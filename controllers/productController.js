@@ -4,6 +4,6 @@ let productController = {
     },
     productAdd: function(req, res){
         return res.send ('quetal')
-    },
+    }
 }
 module.exports= productController;
