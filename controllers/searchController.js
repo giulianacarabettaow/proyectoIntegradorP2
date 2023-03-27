@@ -5,7 +5,7 @@ let searchController = {
 
     results: function(req,res){
         return res.send('results')
-    },
+    }
 }
 
 module.exports = searchController;
