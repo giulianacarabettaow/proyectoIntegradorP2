@@ -1,6 +1,6 @@
 let searchController = {
     search: function(req,res){
-        return res.send('search');
+        return res.send('search')
     },
 
     results: function(req,res){
