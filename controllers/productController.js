@@ -6,4 +6,5 @@ let productController = {
         return res.send ('quetal')
     }
 }
+
 module.exports= productController;

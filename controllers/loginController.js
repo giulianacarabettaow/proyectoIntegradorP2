@@ -1,7 +1,7 @@
-let logjnController = { 
+let loginController = { 
     login: function(req,res){
-        return res.send('login')
+        return res.send('login');
     }
 }
 
-modeule.exports= loginController; 
+module.exports= loginController; 
