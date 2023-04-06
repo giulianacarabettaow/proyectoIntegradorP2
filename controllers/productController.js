@@ -1,10 +1,10 @@
 let elementos = require('../db/elementos');
 let productController = {
     product: function(req,res){
-        return res.send ('Nuestros Productos:')
+        return res.render ('product')
     },
     productAdd: function(req, res){
-        return res.send ('quetal')
+        return res.render ('product')
     }
 }
 
