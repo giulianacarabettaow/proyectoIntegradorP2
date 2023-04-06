@@ -48,3 +48,5 @@ let listaProductos ={
         }, 
     ]
 }
+
+module.exports = listaProductos; 
