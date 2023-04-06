@@ -1,7 +1,7 @@
-let listaProductos= require('../db/elementos');
+let baseDeDatosLocal= require('../db/data');
 let indexController ={
     inicio: function(req,res) {
-       return res.render('index', {listaProductos});
+       return res.render('index', {baseDeDatosLocal});
       }
 }
 
