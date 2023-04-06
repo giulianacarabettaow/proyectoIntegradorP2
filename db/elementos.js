@@ -1,5 +1,5 @@
 //aca hay que escribir la información de los productos que vamos a vender
-let elementos ={
+let listaProductos ={
     lista: [
         {
         id: 1,
