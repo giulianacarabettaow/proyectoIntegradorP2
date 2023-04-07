@@ -8,6 +8,9 @@ let productsController = {
     show: function(req,res){
         return res.render('search-results')
     },
+    showProducts: function(req,res){
+        return res.render('products')
+    }
 
 }
 
