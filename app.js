@@ -4,16 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-//Requerimos el Database
-//let db = require('../db'); //revisar si es necesario declarar esta variable
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-let loginRouter = require('./routes/login');
-let productRouter = require('./routes/product');
-let profileRouter = require('./routes/profile');
-let searchRouter = require('./routes/search');
-let registerRouter = require('./routes/register');
+let productsRouter = require ('./routes/products');
 
 var app = express();
 
@@ -29,11 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
-app.use('/product', productRouter);
-app.use('/profile', profileRouter);
-app.use('/search',searchRouter);
-app.use('/register',registerRouter)
+app.use('/products', productsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,8 +1,7 @@
-let baseDeDatosLocal= require('../db/data');
-let indexController ={
-    inicio: function(req,res) {
-       return res.render('index', {baseDeDatosLocal});
-      }
+let indexController = {
+    index: function(req,res){
+       return res.render('index')
+    }
 }
 
 module.exports = indexController;
