@@ -13,7 +13,7 @@ let loginRouter = require('./routes/login');
 let productRouter = require('./routes/product');
 let profileRouter = require('./routes/profile');
 let searchRouter = require('./routes/search');
-let registerRouter = require('./routes/register')
+let registerRouter = require('./routes/register');
 
 var app = express();
 
