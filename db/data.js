@@ -1,14 +1,5 @@
-let baseDeDatosLocal = {
-    usuario: {
-        usuario:'',
-        email: 'juanperez@example.com',
-        fechaDeNacimiento:'' ,
-        nroDeDocumento:'' , 
-        contraseña:'' ,
-        fotoDePerfil:'',
-
-    },
-
+let listaProducts ={
+  
     productos: [
         {
             id:1,
@@ -85,4 +76,4 @@ let baseDeDatosLocal = {
     ]
 }
 
-module.exports = baseDeDatosLocal;
+module.exports = listaProducts;
