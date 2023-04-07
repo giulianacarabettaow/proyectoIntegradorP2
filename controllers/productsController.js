@@ -1,12 +1,12 @@
 let productsController = {
     index: function(req,res){
-        return res.send('anda products')
+        return res.render('product')
     },
     add: function(req,res){
-        return res.send('anda add')
+        return res.render('product-add') 
     },
     show: function(req,res){
-        return res.send('anda search results')
+        return res.render('search-results')
     },
 
 }

@@ -3,19 +3,19 @@ let usersController={
         return res.send('anda user index')
     },
     login: function(req,res){
-        return res.send('anda login')
+        return res.render('login')
     },
     show: function(req,res){
-        return res.send('anda logueado, aca va header logueado')
+        return res.render('partials/headerLogueado')
     },
     showProfile: function(req,res){
-        return res.send('anda profile')
+        return res.render('profile')
     },
     edit: function(req,res){
-        return res.send('anda edit profile')
+        return res.render('profile-edit')
     },
     register: function(req,res){
-        return res.send('anda register')
+        return res.render('register')
     }, 
 }
 
