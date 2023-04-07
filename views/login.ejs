@@ -4,23 +4,31 @@
 <body>
 	<%- include('./partials/header') %>
 	
-
-	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Ingresar</h2>
+				<h2 class="products-title">Ingresar</h2> 
+				<!-- a partir de esto estoy trabajando con el formulario de ingreso-->
+				<article class="loginForm">
+					<form method="GET" action="/login">
+						
+						<label>Nombre de usuario:</label>
+						<input type="text" name="username" placeholder="">
+						
+						<label>Contraseña:</label>
+						<input type="password" name="password" placeholder="">
+
+						<label>Recuérdame <input type="checkbox" name="recuerdame">
+						</label>
+						
+						<button type="submit"> Ingresar</button>
+					</form>
+				</article>
 			</div>
-			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá va el formulario de login. <br>
-			Debe cumplir con los puntos de la consigna y ser coherente con la tabla de la base de datos <br>
-			Eliminen estás líneas y coloquen el formulario. <br>
-			Recuerden todo lo que necesita tanto la etiqueta form como los campos input para operar correctamtente</i> <br>
-			////////////////
-			</h2>
+			
 
 
-		<%- include('./partials/footer') %>
+	<%- include('./partials/footer') %>
 </body>
 
 </html>

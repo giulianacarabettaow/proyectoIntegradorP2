@@ -11,14 +11,34 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Registrate</h2>
+				<article class="loginForm">
+					<form method="GET" action="/register">
+						
+						<label>Email</label>
+						<input type="email" name="email" placeholder="pepito@example.com">
+						
+						<label>Fecha de Nacimiento</label>
+						<input type="date" name="fechaNacimiento">
+
+						<label>Número de documento</label>
+						<input type="number" name="dni">
+
+						<label>Nombre de usuario:</label>
+						<input type="text" name="username" placeholder="pepito@example.com">
+
+						<label>Contraseña:</label>
+						<input type="password" name="password" placeholder="">
+						
+						<button type="submit"> Ingresar</button>
+
+						<label>Foto de perfil:</label>
+						<input type="image" name="fotoPerfil">
+						
+					</form>
+				</article>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá va el formulario de registro. <br>
-			Debe cumplir con los puntos de la consigna y ser coherente con la tabla de la base de datos <br>
-			Eliminen estás líneas y coloquen el formulario. <br>
-			Recuerden todo lo que necesita tanto la etiqueta form como los campos input para operar correctamtente</i> <br>
-			////////////////
-			</h2>
+			
 
 
 	<%- include('./partials/footer') %>
