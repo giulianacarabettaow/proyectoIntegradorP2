@@ -14,16 +14,12 @@ let productsController = {
         return res.render('search-results')
     },
     showProducts: function(req,res){
-        let id = req.params.id
-        let resultado = []
-
-        for(let i=0; i<dbProduct.productos.length;i++){
-            if(dbProduct.productos[i].id == id){
-                resultado.push(dbProduct.productos[i])
-            }
-        }
+      return res.render('products', 
+      {
+        product: dbProduct.productos,
+        comments: dbProduct.comments, // crear comments
         
-        return res.render('products'); // ya se que para renderizar tengo que cambiar el SEND por un RENDER y pasar el archivo en el cual se renderiza y los parametros que tiene que tener en cuenta
+      })
     }
     
 }
