@@ -7,7 +7,7 @@
     <!-- product detail -->
     <div class="container products-wrapper">
       <div class="d-flex align-items-center">
-        <h2 class="products-title">Nombre</h2>
+        <h2 class="products-title"><%=productUnique.nombre %></h2>
         <p class="product-detail-description">
           <a href="../users/profile-edit">Editar</a>
         </p>
@@ -16,15 +16,15 @@
         <div class="row">
           <article class="col-12 col-lg-8 product-detail-info">
             <img
-              src="./images/products/default-image.png"
-              alt=""
+              src= "<%= productUnique.imagen %>"
+              alt="<%= productUnique.nomnre%>"
               class="product-detail-img"
             />
             <p class="product-detail-description">
-              Descripcion: <%= productUnique.descripcion %> <%=
-              productUnique.nombre %>
+              Descripcion: <%= productUnique.descripcion %> 
             </p>
           </article>
+		  <!--comentarios y usuatios --> 
           <div class="col-12 col-lg-4">
             <section class="comments">
               <article>
@@ -32,62 +32,13 @@
                 <div class="data">
                   <p class="user">
                     <strong>
-                      <a href="profile.html">Nombre usuario: </a>
+                      <a href="../users/profile">Nombre usuario: </a> <!--preguntar como hacer la ruta a profile--> 
                     </strong>
                     Texto del comentario que escribió el usuario Lorem ipsum
                     dolor sit amet consectetur adipisicing elit. Tempora
                     doloribus enim aspernatur fugit corrupti suscipit sit dolore
                     magnam, praesentium explicabo inventore molestias facilis
                     labore. Fugit ipsa mollitia odit inventore consequuntur.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <img src="https://via.placeholder.com/35" alt="" />
-                <div class="data">
-                  <p class="user">
-                    <strong>
-                      <a href="profile.html">Nombre usuario: </a>
-                    </strong>
-                    Texto del comentario que escribió el usuario Lorem ipsum
-                    dolor sit amet consectetur.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <img src="https://via.placeholder.com/35" alt="" />
-                <div class="data">
-                  <p class="user">
-                    <strong>
-                      <a href="profile.html">Nombre usuario: </a>
-                    </strong>
-                    Texto del comentario que escribió el usuario Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <img src="https://via.placeholder.com/35" alt="" />
-                <div class="data">
-                  <p class="user">
-                    <strong>
-                      <a href="profile.html">Nombre usuario: </a>
-                    </strong>
-                    Texto del comentario que escribió el usuario Lorem ipsum
-                    dolor sit amet.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <img src="https://via.placeholder.com/35" alt="" />
-                <div class="data">
-                  <p class="user">
-                    <strong>
-                      <a href="profile.html">Nombre usuario: </a>
-                    </strong>
-                    Texto del comentario que escribió el usuario Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Tempora
-                    doloribus enim aspernatur fugit corrupti suscipit sit dolore
                   </p>
                 </div>
               </article>

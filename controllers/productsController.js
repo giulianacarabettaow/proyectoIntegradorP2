@@ -20,8 +20,9 @@ let productsController = {
         resultado.push(dbProduct.productos[i]);
       }
     }
-    return res.render("products", { productUnique: resultado[0] }); // ya se que para renderizar tengo que cambiar el SEND por un RENDER y pasar el archivo en el cual se renderiza y los parametros que tiene que tener en cuenta
+    return res.render("products", { productUnique: resultado[0] }); 
   },
+ 
 };
 
 module.exports = productsController;

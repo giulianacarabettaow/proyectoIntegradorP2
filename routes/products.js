@@ -8,6 +8,7 @@ let productsController = require('../controllers/productsController');
    router.get('/id/:id', productsController.showProducts);
    router.get('/products/add',productsController.add);
    router.get('/search-results',productsController.show);
+   
 
 
 module.exports = router;
