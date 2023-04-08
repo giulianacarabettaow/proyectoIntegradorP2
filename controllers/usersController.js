@@ -19,4 +19,16 @@ let usersController={
     }, 
 }
 
+app.get('/profile-edit', (req, res)=> {
+    let user = {
+      username: '',
+      email: '',
+      dni: '',
+      fotoPerfil: '',
+      password:'',
+      fechaNacimiento:'',
+    };
+  })
+
 module.exports = usersController;
+module.exports = app;
