@@ -23,7 +23,6 @@ let productsController = {
     }
     return res.render("products", { productUnique: resultado[0], comentario: dbProduct.comentarios }); 
   },
- 
 };
 
 module.exports = productsController;

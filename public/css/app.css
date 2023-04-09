@@ -68,7 +68,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(--yellow);
+  background-color: #036564;
 }
 
 .main-header_home-link,
@@ -108,7 +108,6 @@ hr {
   color: var(--gray);
   cursor: pointer;
 }
-
 
 /*====== Main Navbar ======*/
 .btn-toggle-navbar {
@@ -175,7 +174,7 @@ hr {
 }
 
 .product-box {
-  background-color: #ffffff;
+  background-color: #d6d6d6;
   border-radius: 5px;
   overflow: hidden;
   transition: 300ms;
