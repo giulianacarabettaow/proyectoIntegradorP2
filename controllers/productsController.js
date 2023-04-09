@@ -32,6 +32,9 @@ let productsController = {
   login: function(req,res){
     return res.render('login')
   },
+  edit: function(req,res){
+    return res.render('profileEdit', {users: dbUsers.usuario})
+},
 };
 
 module.exports = productsController;

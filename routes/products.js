@@ -10,7 +10,7 @@ let productsController = require('../controllers/productsController');
    router.get('/search-results',productsController.show);
    router.get('/users/register',productsController.register);
    router.get('/users/login', productsController.login);
-   
+   router.get('/users/profileEdit', productsController.edit)
 
 
 module.exports = router;
