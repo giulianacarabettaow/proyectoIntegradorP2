@@ -16,7 +16,7 @@ let usersController={
         
     },
     edit: function(req,res){
-        return res.render('profile-edit')
+        return res.render('profileEdit', {users: dbUsers.usuario})
     },
     register: function(req,res){
         return res.render('register')

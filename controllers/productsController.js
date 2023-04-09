@@ -7,7 +7,7 @@ let productsController = {
   },
 
   add: function (req, res) {
-    return res.render("productAdd"); //no anda la ruta
+    return res.render('productAdd', {users: dbProduct.usuario }); //no anda la ruta
   },
   show: function (req, res) {
     return res.render("search-results", {products:dbProduct.productos});
