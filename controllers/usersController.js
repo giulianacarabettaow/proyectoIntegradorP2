@@ -1,3 +1,5 @@
+let dbUsers= require('../db/data')
+
 let usersController={
     index: function(req,res){
         return res.send('anda user index')
@@ -9,7 +11,7 @@ let usersController={
         return res.render('partials/headerLogueado')
     },
     showProfile: function(req,res){
-        return res.render('profile')
+        return res.render('profile', {users: dbUsers.usuario})
     },
     edit: function(req,res){
         return res.render('profile-edit')

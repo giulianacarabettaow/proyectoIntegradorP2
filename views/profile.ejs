@@ -2,7 +2,7 @@
 <html lang="es">
 	<%- include('./partials/head') %>
 <body>
-	<%- include('./partials/header') %>
+	<%- include('./partials/headerLogueado', {users: users}) %>
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
@@ -13,7 +13,7 @@
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title">Nombre del usuario 
-						<a href="profile-edit.html">
+						<a href="/users/profile-edit">
 							<i class="fas fa-cog"></i>
 						</a>
 					</h1>
