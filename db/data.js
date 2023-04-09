@@ -12,13 +12,13 @@ let listaProducts ={
     comentarios:[
 
         {
-            Nombre:'Nombre1',
-            textoDelComentario: 'texto1',
+            Nombre:'Moria Casan',
+            textoDelComentario: 'El decorado se calla',
             fotoDePerfil:'/images/users/default-image.png',
         },
         {
-            Nombre:'Nombre2',
-            textoDelComentario: 'texto2',
+            Nombre:'Susana Gimenez',
+            textoDelComentario: '',
             fotoDePerfil:'/images/users/default-image.png',
         },
         {

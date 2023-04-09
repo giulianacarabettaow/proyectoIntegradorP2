@@ -11,27 +11,37 @@
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Registrate</h2>
-				<article class="loginForm">
+				<article >
 					<form method="GET" action="/users/profile">
 						
-						<label>Email</label>
-						<input type="email" name="email" placeholder="pepito@example.com">
 						
-						<label>Fecha de Nacimiento</label>
-						<input type="date" name="fechaNacimiento">
+						<label class="form-label">Email</label>
+						<input type="email" name="email" placeholder="pepito@example.com" class="form-input">
+					
+						
+						<label class="form-label">Fecha de Nacimiento</label>
+						<input type="date" name="fechaNacimiento" class="form-input">
+						
 
-						<label>Número de documento</label>
-						<input type="number" name="dni">
+						
+						<label class="form-label">Número de documento</label>
+						<input type="number" name="dni" class="form-input">
+						
 
-						<label>Nombre de usuario:</label>
-						<input type="text" name="username" placeholder="pepito@example.com">
+						
+						<label class="form-label">Nombre de usuario:</label>
+						<input type="text" name="username" placeholder="pepito@example.com" class="form-input">
+						
 
-						<label>Contraseña:</label>
-						<input type="password" name="password" placeholder="">
+						
+						<label class="form-label">Contraseña:</label>
+						<input type="password" name="password" placeholder="" class="form-input">
 						
 						
-						<label>Foto de perfil:</label>
-						<input type="image" name="fotoPerfil">
+						
+						<label class="form-label">Foto de perfil:</label>
+						<input type="image" name="fotoPerfil" class="form-input">
+						
 						
 						<button type="submit"> Crear perfil</button>
 					</form>

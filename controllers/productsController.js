@@ -7,16 +7,16 @@ let productsController = {
   },
 
   add: function (req, res) {
-    return res.render("product-add");
+    return res.render("productAdd"); //no anda la ruta
   },
   show: function (req, res) {
-    return res.render("search-results");
+    return res.render("search-results", {products:dbProduct.productos});
   },
   showProducts: function (req, res) {
     let id = req.params.id;
     let resultado = [];
     for (let i = 0; i < dbProduct.productos.length; i++) {
-      if (dbProduct.productos[i].id == id) {
+      if (dbProduct.productos[i].id == id){
         resultado.push(dbProduct.productos[i]);
         console.log(resultado[0]);
       }

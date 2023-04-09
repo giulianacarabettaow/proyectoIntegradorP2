@@ -54,86 +54,27 @@
           <h2 class="products-title">Más comentados</h2>
         </div>
         <!-- Show the "ultimos" products -->
+        <% for(let i = 0; i < 8 ; i++){ %>  <!-- consultar como hacer para que aparezcan los productos a partir del cuarto -->
         <div class="col-12 col-sm-6 col-lg-3">
           <section class="product-box">
-            <a href="product.html">
+            <a href="/products/id/<%= listaProducts[i].id %>">
               <figure class="product-box_image">
                 <img
-                  src="images/products/default-image.png"
-                  alt="cafetera moulinex"
+                  src="<%= listaProducts[i].imagen %>"
+                  alt="<%= listaProducts[i].nombre %>"
                 />
               </figure>
               <article class="product-box_data">
-                <h2>Nombre del producto</h2>
+                <h2><%= listaProducts[i].nombre %></h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Eaque delectus ex
+                  <%= listaProducts[i].descripcion %>
                 </p>
-                <p>Comentarios: 12</p>
+                <p>Comentarios: 12</p>    <!-- nos faltó esto en la db, consultar como agregarlo al MySQL -->
               </article>
             </a>
           </section>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <section class="product-box">
-            <a href="product.html">
-              <figure class="product-box_image">
-                <img
-                  src="images/products/default-image.png"
-                  alt="cafetera moulinex"
-                />
-              </figure>
-              <article class="product-box_data">
-                <h2>Nombre del producto</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Eaque delectus ex
-                </p>
-                <p>Comentarios: 12</p>
-              </article>
-            </a>
-          </section>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <section class="product-box">
-            <a href="product.html">
-              <figure class="product-box_image">
-                <img
-                  src="images/products/default-image.png"
-                  alt="cafetera moulinex"
-                />
-              </figure>
-              <article class="product-box_data">
-                <h2>Nombre del producto</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Eaque delectus ex
-                </p>
-                <p>Comentarios: 12</p>
-              </article>
-            </a>
-          </section>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <section class="product-box">
-            <a href="product.html">
-              <figure class="product-box_image">
-                <img
-                  src="images/products/default-image.png"
-                  alt="cafetera moulinex"
-                />
-              </figure>
-              <article class="product-box_data">
-                <h2>Nombre del producto</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Eaque delectus ex
-                </p>
-                <p>Comentarios: 12</p>
-              </article>
-            </a>
-          </section>
-        </div>
+        </div> 
+          <% } %>
       </div>
     </div>
     <!-- /Más comentados -->

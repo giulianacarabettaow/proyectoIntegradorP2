@@ -11,7 +11,9 @@ let usersController={
         return res.render('partials/headerLogueado')
     },
     showProfile: function(req,res){
-        return res.render('profile', {users: dbUsers.usuario})
+    
+        return res.render('profile', {users: dbUsers.usuario , products: dbUsers.productos})
+        
     },
     edit: function(req,res){
         return res.render('profile-edit')
