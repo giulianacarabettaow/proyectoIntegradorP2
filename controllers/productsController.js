@@ -34,7 +34,7 @@ let productsController = {
   },
   edit: function(req,res){
     return res.render('profileEdit', {users: dbUsers.usuario})
-},
+  },
 };
 
 module.exports = productsController;
