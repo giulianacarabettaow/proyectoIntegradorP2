@@ -1,5 +1,43 @@
 let listaProducts ={
-  
+    
+    usuario : {
+        nombre: 'Nacho',
+        email:'mail@hotmalil.cmo',
+        fotoDePerfil:'/images/users/default-image.png',
+        contraseña:'nada',
+        fechaDeNacimiento:'17/06/2004',
+        dni:'4444444',
+    },
+
+    comentarios:[
+
+        {
+            Nombre:'Nombre1',
+            textoDelComentario: 'texto1',
+            fotoDePerfil:'/images/users/default-image.png',
+        },
+        {
+            Nombre:'Nombre2',
+            textoDelComentario: 'texto2',
+            fotoDePerfil:'/images/users/default-image.png',
+        },
+        {
+            Nombre:'Nombre3',
+            textoDelComentario: 'texto3',
+            fotoDePerfil:'/images/users/default-image.png',
+        },
+        {
+            Nombre:'Nombre4',
+            textoDelComentario: 'texto4',
+            fotoDePerfil:'/images/users/default-image.png',
+        },
+        {
+            Nombre:'Nombre5',
+            textoDelComentario: 'texto5',
+            fotoDePerfil:'/images/users/default-image.png',
+        },
+    ],
+
     productos: [
         {
             id:1,

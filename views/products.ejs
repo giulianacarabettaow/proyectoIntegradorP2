@@ -17,7 +17,7 @@
           <article class="col-12 col-lg-8 product-detail-info">
             <img
               src= "<%= productUnique.imagen %>"
-              alt="<%= productUnique.nomnre%>"
+              alt="<%= productUnique.nombre%>"
               class="product-detail-img"
             />
             <p class="product-detail-description">
@@ -25,23 +25,22 @@
             </p>
           </article>
 		  <!--comentarios y usuatios --> 
+      
           <div class="col-12 col-lg-4">
             <section class="comments">
+              <% for ( let j=0; j < comentario.length ; j++){ %>
               <article>
-                <img src="https://via.placeholder.com/35" alt="" />
+                <img src="<%= comentario[j].fotoDePerfil %>" alt="<%=comentario[j].Nombre%>" />
                 <div class="data">
                   <p class="user">
                     <strong>
-                      <a href="../users/profile">Nombre usuario: </a> <!--preguntar como hacer la ruta a profile--> 
+                      <a href="../users/profile"><%=comentario[j].Nombre %> </a> <!--preguntar como hacer la ruta a profile--> 
                     </strong>
-                    Texto del comentario que escribió el usuario Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Tempora
-                    doloribus enim aspernatur fugit corrupti suscipit sit dolore
-                    magnam, praesentium explicabo inventore molestias facilis
-                    labore. Fugit ipsa mollitia odit inventore consequuntur.
+                    <%= comentario[j].textoDelComentario %>
                   </p>
                 </div>
               </article>
+            <% } %>
             </section>
             <form class="form" action="" method="POST">
               <input
