@@ -23,6 +23,15 @@ let productsController = {
     }
     return res.render("products", { productUnique: resultado[0], comentario: dbProduct.comentarios }); 
   },
+  register: function(req,res){
+    return res.render('register')
+  },
+  edit: function(req,res){
+    return res.render('profileEdit', {users: dbUsers.usuario})
+  },
+  login: function(req,res){
+    return res.render('login')
+  },
 };
 
 module.exports = productsController;

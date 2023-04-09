@@ -8,7 +8,8 @@ let productsController = require('../controllers/productsController');
    router.get('/id/:id', productsController.showProducts);
    router.get('/add', productsController.add);  //no anda la ruta
    router.get('/search-results',productsController.show);
-   
+   router.get('/users/register',productsController.register);
+   router.get('/users/login', productsController.login);
    
 
 
