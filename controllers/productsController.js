@@ -3,7 +3,7 @@ let dbProduct = require("../db/data");
 
 let productsController = {
   index: function (req, res) {
-    return res.send(dbProduct);
+    return res.send(dbProduct.productos);
   },
 
   add: function (req, res) {
@@ -35,6 +35,7 @@ let productsController = {
   edit: function(req,res){
     return res.render('profileEdit', {users: dbUsers.usuario})
   },
+  
 };
 
 module.exports = productsController;

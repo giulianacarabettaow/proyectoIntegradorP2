@@ -21,7 +21,7 @@
               class="product-detail-img"
             />
             <p class="product-detail-description">
-              Descripcion: <%= productUnique.descripcion %> 
+               <%= productUnique.descripcion %> 
             </p>
           </article>
 		  <!--comentarios y usuatios --> 
@@ -34,7 +34,7 @@
                 <div class="data">
                   <p class="user">
                     <strong>
-                      <a href="../users/profile"><%=comentario[j].Nombre %> </a> <!--preguntar como hacer la ruta a profile--> 
+                      <a href="/users/profile"><%=comentario[j].Nombre %> </a> <!--preguntar como hacer la ruta a profile--> 
                     </strong>
                     <%= comentario[j].textoDelComentario %>
                   </p>
