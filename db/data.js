@@ -56,7 +56,7 @@ let listaProducts ={
         {
             id:3,
             nombre:'Puff Femina',
-            descripcion:'El sillón "Semina" es una pieza de mobiliario de alta calidad diseñada para complementar cualquier decoración de sala de estar. Su elegante diseño combina la belleza natural de la madera con la frescura y limpieza del color blanco, lo que lo convierte en un complemento ideal para cualquier hogar.',
+            descripcion:'El sillón "Femina" es una pieza de mobiliario de alta calidad diseñada para complementar cualquier decoración de sala de estar. Su elegante diseño combina la belleza natural de la madera con la frescura y limpieza del color blanco, lo que lo convierte en un complemento ideal para cualquier hogar.',
             precio:'$200.000', 
             imagen:'/images/products/puffFemina.jpg',
         },
