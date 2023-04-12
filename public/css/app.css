@@ -43,6 +43,8 @@ a {
   display: inline-block;
   text-decoration: none;
   color: inherit;
+  font-style: italic;
+  font-weight: bold;
 }
 
 figure {
@@ -168,9 +170,11 @@ hr {
 }
 
 .products-title {
+  font-style: oblique;
   font-size: 2.4em;
   font-weight: 400;
   color: var(--gray);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .product-box {
