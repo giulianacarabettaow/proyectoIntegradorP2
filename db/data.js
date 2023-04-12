@@ -98,7 +98,7 @@ let listaProducts ={
         {
             id:9,
             nombre:'Almohadón Fidas',
-            descripcion:'No El almohadón "Fidas" es un accesorio de decoración moderno y elegante diseñado para añadir comodidad y estilo a cualquier sillón. Con su color blanco puro y su forma cuadrada, este almohadón es una adición atemporal y versátil para cualquier ambiente.',
+            descripcion:'El almohadón "Fidas" es un accesorio de decoración moderno y elegante diseñado para añadir comodidad y estilo a cualquier sillón. Con su color blanco puro y su forma cuadrada, este almohadón es una adición atemporal y versátil para cualquier ambiente.',
             precio:'$200.000', 
             imagen:'/images/products/almohadonFidas.png',
         },
