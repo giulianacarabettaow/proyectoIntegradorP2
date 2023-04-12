@@ -3,7 +3,7 @@ let dbProduct = require("../db/data");
 
 let productsController = {
   index: function (req, res) {
-    return res.send(dbProduct.productos);
+    return res.render('allProducts', {allProd: dbProduct.productos});
   },
 
   add: function (req, res) {

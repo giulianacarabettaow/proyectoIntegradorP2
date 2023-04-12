@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <%- include('./partials/head') %>
+  <body>
+    <% //if (){ %>
+    <!-- aca quiero decir que si esta logueado el usuario muestre -->
+    <%- //include('./partials/headerLogueado') %> <% //}else { %>
+    <!-- si no está logueado  -->
+    <%- //include('./partials/header') %> <%// } %> <%-
+    include('./partials/header') %>
+    <!-- Banner -->
+    <div class="banner">
+      <img
+        src="/images/BannerDescuentos.jpg"
+        alt="Banner de descuentos"
+      />
+    </div>
+    <!-- /Banner -->
+
+    <!-- Novedades -->
+    <div class="container products-wrapper">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="products-title">Todos los productos</h2>
+        </div>
+
+        <!-- Show the "ultimos" products -->
+
+        <% for(let i = 0; i < allProd.length; i++) { %>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <section class="product-box">
+            <a href="/products/id/<%= allProd[i].id %>">
+              <figure class="product-box_image">
+                <img
+                  src="<%= allProd[i].imagen %>"
+                  alt="<%= allProd[i].nombre %>"
+                />
+              </figure>
+              <article class="product-box_data">
+                <h2><%= allProd[i].nombre %></h2>
+                <p><%= allProd[i].descripcion %></p>
+                <p>Comentarios: 12</p>
+              </article>
+            </a>
+          </section>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <!-- /Novedades -->
+
+    <%- include('./partials/footer') %>
+  </body>
+</html>
