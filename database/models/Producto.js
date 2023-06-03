@@ -43,8 +43,8 @@ module.exports = function(sequelize, dataTypes){
     producto.associate = function(models){
         //Creo las relaciones con otros modelos
         producto.belongsTo(models.Usuario, {
-            as: "nombre",
-            foreignKey:"nombre"
+            as: "id",
+            foreignKey:"id"
         })
     }
     }
