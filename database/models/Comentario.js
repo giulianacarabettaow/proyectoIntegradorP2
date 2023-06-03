@@ -11,33 +11,43 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.STRING,
             allowNull: false
         },
-        //tenemos dos Foreign Keys 
-        created_at:{
+        //tenemos dos Foreign Keys
+         FkUsuariosId:{
+            type: dataTypes.INTEGER
+         },
+         FkProductosId:{
+            type: dataTypes.INTEGER
+         },
+        createdAt:{
             type: dataTypes.DATE
         },
-        updated_at:{
+        updatedAt:{
             type: dataTypes.DATE
         },
-        deleted_at:{
+        deletedAt:{
             type: dataTypes.DATE
         }
 
     }
     let conf = {
-        //Si las tablas tienen los campos de auditoria con un nombre diferente a createdAt y updatedAt se lo indicamos así 👇
-        createdAt: "created_at", //Le dice a la tabla cómo se llama el campo de auditoría en la tabla de la base de datos.
-        updatedAt: "updated_at" //Le dice a la tabla cómo se llama el campo de auditoría en la tabla de la base de datos.
+        tableName: "comentarios",
+        timestamps: true,
+        underscored: false,
     }
-    comentario.associate = function(models){
+    const Comentario = sequelize.define(alias, cols, conf);
+
+    Comentario.associate = function(models){
         //Creo las relaciones con otros modelos
         //relacion con usuario
-        comentario.belongsTo(models.Usuario, {
-            as: "nombre",
-            foreignKey:"nombre"}),
+        Comentario.belongsTo(models.Usuario, {
+            as: "comentador",
+            foreignKey:"FkUsuariosId"}),
         //relacion con producto
-        comentario.belongsTo(models.Producto, {
-            as: "id",
-            foreignKey:"id"
+        Comentario.belongsTo(models.Producto, {
+            as: "productoComentado",
+            foreignKey:"FkProductosId"
         })
     }
+
+    return Comentario
     }

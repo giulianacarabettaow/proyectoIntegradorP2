@@ -8,43 +8,56 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.INTEGER},
         email:{
             type: dataTypes.STRING,
-            allowNull: false,
+            notNull: true,
             unique: true 
         },
         nombre:{
             type: dataTypes.STRING,
-            allowNull: false
+            notNull: true
         },
         contr:{
             type: dataTypes.STRING,
-            allowNull: false
+            notNull: true
         },
         fotoDePerfil:{
             type: dataTypes.STRING,
-            allowNull: true
+            notNull: true
         },
         fechaDeNacimiento:{
             type: dataTypes.DATE,
-            allowNull: false
+            notNull: true
         },
         dni:{
             type: dataTypes.INTEGER,
-            allowNull: false
+            notNull: true
         },
-        created_at:{
+        createdAt:{
             type: dataTypes.DATE
         },
-        updated_at:{
+        updatedAt:{
             type: dataTypes.DATE
         },
-        deleted_at:{
+        deletedAt:{
             type: dataTypes.DATE
         }
 
     }
     let conf = {
-        //Si las tablas tienen los campos de auditoria con un nombre diferente a createdAt y updatedAt se lo indicamos así 👇
-        createdAt: "created_at", //Le dice a la tabla cómo se llama el campo de auditoría en la tabla de la base de datos.
-        updatedAt: "updated_at" //Le dice a la tabla cómo se llama el campo de auditoría en la tabla de la base de datos.
+        tableName: "productos",
+        timestamps: true,
+        underscored: false
     }
+    const Usuario = sequelize.define(alias, cols, conf);
+
+    //relaciones con comentarios y productos
+    Usuario.associate = function(models){
+        Usuario.hasMany(models.Producto, {
+            as: "productos",
+            foreignKey:"id"}),
+        Usuario.hasMany(models.Comentario, {
+            as: "comentarios",
+            foreignKey:"id"})
+        }
+
+    return Usuario
 }

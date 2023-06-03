@@ -1,3 +1,5 @@
+const { INTEGER } = require("sequelize");
+
 module.exports = function(sequelize, dataTypes){
     let alias= "Producto";
 
@@ -24,27 +26,41 @@ module.exports = function(sequelize, dataTypes){
             allowNull: true
         }, 
         //tenemos una foreign key
-        created_at:{
+        FkUsuariosId:{
+            type: dataTypes.INTEGER
+        },
+        createdAt:{
             type: dataTypes.DATE
         },
-        updated_at:{
+        updatedAt:{
             type: dataTypes.DATE
         },
-        deleted_at:{
+        deletedAt:{
             type: dataTypes.DATE
         }
 
     }
     let conf = {
-        //Si las tablas tienen los campos de auditoria con un nombre diferente a createdAt y updatedAt se lo indicamos así 👇
-        createdAt: "created_at", //Le dice a la tabla cómo se llama el campo de auditoría en la tabla de la base de datos.
-        updatedAt: "updated_at" //Le dice a la tabla cómo se llama el campo de auditoría en la tabla de la base de datos.
+        tableName: "productos",
+        timestamps: true,
+        underscored: false,
     }
-    producto.associate = function(models){
+    const Producto = sequelize.define(alias, cols, conf);
+
+
+    Producto.associate = function(models){
         //Creo las relaciones con otros modelos
-        producto.belongsTo(models.Usuario, {
-            as: "id",
+        Producto.belongsTo(models.Usuario, {
+            as: "owner",
+            foreignKey:"FkUsuariosId" //belongsTo siempre le ponemos Fk, no id solo
+        });
+        Producto.hasMany(models.Comentario,{
+            as: "comentarios",
             foreignKey:"id"
+
         })
     }
+
+    return Producto
+
     }
