@@ -29,12 +29,12 @@ module.exports = function(sequelize, dataTypes){
         }
 
     }
-    let conf = {
+    let config = {
         tableName: "comentarios",
         timestamps: true,
         underscored: false,
     }
-    const Comentario = sequelize.define(alias, cols, conf);
+    const Comentario = sequelize.define(alias, cols, config);
 
     Comentario.associate = function(models){
         //Creo las relaciones con otros modelos

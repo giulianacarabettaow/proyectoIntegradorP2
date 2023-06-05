@@ -42,12 +42,12 @@ module.exports = function(sequelize, dataTypes){
         }
 
     }
-    let conf = {
+    let config = {
         tableName: "usuarios",
         timestamps: true,
         underscored: false
     }
-    const Usuario = sequelize.define(alias, cols, conf);
+    const Usuario = sequelize.define(alias, cols, config);
 
     //relaciones con comentarios y productos
     Usuario.associate = function(models){

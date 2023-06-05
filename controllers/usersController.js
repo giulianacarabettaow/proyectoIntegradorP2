@@ -1,4 +1,8 @@
 let dbUsers= require('../db/data')
+//esto es lo nuevo, habría que ver si corregimos los métodos del controlador
+//const db = require('../database/models')
+//const userModel= db.User
+
 
 let usersController={
     index: function(req,res){
@@ -20,7 +24,21 @@ let usersController={
     },
     register: function(req,res){
         return res.render('register')
-    }, 
+    }
+    //processRegister: function(req,res){
+       // db.User.findOne({ //pedido asincronico
+         //   where: [
+        //        {email: req.body.email},
+               // {dni: req.body.dni}
+         //   ]
+      //  })
+       // .then((result)=>{ 
+         //   if (result != null){ //si existe un mail registrado
+                //entonces quiero que veas un mensaje de que ya estas registrado
+        //    }
+      //  }
+     //   )
+  //  },
 }
 
 

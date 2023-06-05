@@ -40,12 +40,12 @@ module.exports = function(sequelize, dataTypes){
         }
 
     }
-    let conf = {
+    let config = {
         tableName: "productos",
         timestamps: true,
         underscored: false,
     }
-    const Producto = sequelize.define(alias, cols, conf);
+    const Producto = sequelize.define(alias, cols, config);
 
 
     Producto.associate = function(models){
