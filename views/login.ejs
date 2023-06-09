@@ -10,7 +10,7 @@
 				<h2 class="products-title">Ingresar</h2> 
 				<!-- a partir de esto estoy trabajando con el formulario de ingreso-->
 				<article>
-					<form method="GET" action="/users/profile">
+					<form method="POST" action="/users/profile">
 						
 						<label class="form-label">Nombre de usuario:</label>
 						<input type="text" name="username" placeholder="" class="form-input">
@@ -23,6 +23,13 @@
 						
 						<button type="submit"> Ingresar</button>
 					</form>
+					
+					<% if(locals.errors){ %>
+							<p class="error"> <%= errors.message %></p>
+					
+					<% } %>
+
+
 				</article>
 			</div>
 			

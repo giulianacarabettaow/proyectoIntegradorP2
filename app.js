@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+
+//Requerir DB
+const db = require('./database/models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,6 +24,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//configuracion de session
+app.use(session({ 
+  secret: "proyectoIntegradorP2",
+  resave: false,
+  saveUninitialized: true}));
+
+ app.use(function(req, res, next){
+   res.locals.usuarioLogueado ={
+         nombre: req.body.nombre
+   }
+   return next();
+ });
+
+//middleware session
+app.use(function(req, res, next){
+  if (req.session.usuario != undefined){
+    res.locals.user= req.session.usuario;
+    return next();
+  }
+  return next();
+})
+
+//middleware cookies
+//falta
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

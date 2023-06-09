@@ -2,12 +2,11 @@
 <html lang="es">
   <%- include('./partials/head') %>
   <body>
-    <% //if (){ %>
-    <!-- aca quiero decir que si esta logueado el usuario muestre -->
-    <%- //include('./partials/headerLogueado') %> <% //}else { %>
-    <!-- si no está logueado  -->
-    <%- //include('./partials/header') %> <%// } %> <%-
-    include('./partials/header') %>
+    <% if (locals.usuarioLogueado != undefined){ %>
+      <%- include('./partials/headerLogueado') %> 
+      <% }else { %>
+      <%- include('./partials/header') %> 
+      <% } %>
     <!-- Banner -->
     <div class="banner">
       <img

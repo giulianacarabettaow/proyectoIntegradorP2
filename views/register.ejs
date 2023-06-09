@@ -4,7 +4,11 @@
 <%- include('./partials/head') %>
 
 <body>
-	<%- include('./partials/header') %>
+	<% if (locals.usuarioLogueado != undefined){ %>
+		<%- include('./partials/headerLogueado') %> 
+		<% }else { %>
+		<%- include('./partials/header') %> 
+		<% } %>
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
@@ -12,7 +16,7 @@
 			<div class="col-12">
 				<h2 class="products-title">Registrate</h2>
 				<article >
-					<form method="POST" action="/users/profile"> <!--usamos POST porque es el método HTTP para guardar datos-->
+					<form method="GET" action="/users/profile"> <!--usamos POST porque es el método HTTP para guardar datos-->
 						
 						
 						<label class="form-label">Email</label>
