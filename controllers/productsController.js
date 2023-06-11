@@ -1,12 +1,20 @@
 const models= require("../database/models") //requeris la conexion a los modelos
 const productos= models.Producto
+const comentario=models.Comentario
 
-//let dbProduct = require("../db/data"); 
+let dbProduct = require("../db/data"); 
 
 let productsController = {
   index: function (req, res) {
-    
-    return res.render('allProducts', {allProd: dbProduct.productos});
+    productos.findAll({
+      include:[{association:"owner"}]
+    })
+    .then(function(resultadoAll){
+
+     // return res.send(resultadoAll)
+      return res.render("allProducts", {allProd:resultadoAll})
+      //return res.render('allProducts', {allProd: dbProduct.productos});
+    })
   },
 
   add: function (req, res) {
@@ -25,8 +33,8 @@ let productsController = {
     })
 
     .then(function(resultado){
-
-      return res.send(resultado) //anda
+      // return res.send(resultado.Comentario) no trae nada
+      return res.render("products",{productUnique: resultado, comentario: resultado}) //anda
     })
 
 
@@ -41,7 +49,7 @@ let productsController = {
     
   
   },
-  
+
   register: function(req,res){
     return res.render('register')
   },
