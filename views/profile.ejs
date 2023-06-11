@@ -2,7 +2,11 @@
 <html lang="es">
 	<%- include('./partials/head') %>
 <body>
-	<%- include('./partials/headerLogueado', {users: users}) %>
+	<% if (locals.usuarioLogueado != undefined){ %>
+		<%- include('./partials/headerLogueado') %> 
+		<% }else { %>
+		<%- include('./partials/header') %> 
+		<% } %>
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">

@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+
+//Requerir DB
+const db = require('./database/models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,6 +25,47 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//configuracion de session
+app.use(session({ 
+  secret: "proyectoIntegradorP2",
+  resave: false,
+  saveUninitialized: true}));
+
+ app.use(function(req, res, next){
+   res.locals.usuarioLogueado ={
+         nombre: req.body.nombre
+   }
+   return next();
+ });
+
+//middleware session
+app.use(function(req, res, next){ //con est función pedimos que todo lo que hagamos con req.session se pase a las vistas
+  if (req.session.usuario != undefined){
+    res.locals.user= req.session.usuario;
+    return next();
+  }
+  return next(); //para que no se frene el proyecto
+})
+
+//Middleware de cookies (la configuración está en el controlador)
+app.use(function(req, res, next){
+  res.cookie('sesionDelUsuario')
+  if(req.cookies.usuarioId != undefined && req.session.user ==undefined){ //si existe una cookie para cierto id, pero no se encuentra una sesion
+    db.Usuario.findByPk(req.cookies.usuarioId) //buscar el id que corresponda al usuario
+    .then((usuario)=>{ 
+      req.session.usuario = usuario.dataValues; //entonces requerir la sesion con los datos del usuario
+      res.locals.usuario = usuario.dataValues; //devolver en las vistas la sesion del usuario iniciada
+      return next();})
+    .catch((error)=>{
+      console.log(error);
+    });
+  }else {
+    return next();
+  }
+})
+
+
+//Rutas
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter); 
