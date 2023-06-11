@@ -110,7 +110,6 @@ let listaProducts ={
             imagen:'/images/products/alfombraSabelio.png',
         }
 
-       //falta comentarios
     ]
 }
 

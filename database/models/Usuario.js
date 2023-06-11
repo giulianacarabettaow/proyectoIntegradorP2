@@ -1,5 +1,5 @@
 module.exports = function(sequelize, dataTypes){
-    let alias= "Usuario";
+    let alias= "Usuario";  // es el nombre del modelo en el controlador
 
     let cols={
         id:{
@@ -47,7 +47,7 @@ module.exports = function(sequelize, dataTypes){
         timestamps: true,
         underscored: false
     }
-    const Usuario = sequelize.define(alias, cols, config);
+    const Usuario = sequelize.define(alias, cols, config); // Usuario podria ir en minuscula como lo son la mayoria de la declaracion de variable por convención
 
     //relaciones con comentarios y productos
     Usuario.associate = function(models){
