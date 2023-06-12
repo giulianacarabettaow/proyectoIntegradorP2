@@ -67,7 +67,21 @@ let productsController = {
     // comentario.findAll()
 
     .then(function(resultado){
-      return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
+
+      let detailProduct = {
+        id: resultado.id,
+        nombre: resultado.nombre,
+        descripcion: resultado.descripcion,
+        imagen: resultado.imagen,
+        precio: resultado.precio,
+        FkUsuarioId: resultado.FkUsuarioId,
+        owner: resultado.owner,
+        comentarios: resultado.comentarios
+      }
+
+
+
+      return res.send(detailProduct) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
       //return res.render("products",{productUnique: resultado, comentario: resultado.comentarios}) //anda
     })
 
