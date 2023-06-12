@@ -27,27 +27,28 @@ let productsController = {
 
     let buscado = req.query.search
 
-    let filtrar = {
+    productos.findAll({
       where:[
         {nombre: {[op.like]: `%${buscado}%` }},
         {descripcion: {[op.like]: `%${buscado}%`}} //la busqueda por descripcion no anda shoro
       ],
-      include: [{association:"owner"}]
-      
+      include: [
+        {association:"owner"},
+        {association:"comentarios"}
+    ]
     }
-
-    productos.findAll(filtrar)
+    )
 
     .then(function(resultadoDeBusqueda){
-      return res.send(resultadoDeBusqueda)
+     // return res.send(resultadoDeBusqueda)
+     return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
     })
 
     .catch(function(error){
       console.log(error)
     })
 
-
-    //return res.send (buscado)
+    
 
     //return res.render("search-results", {products:dbProduct.productos});
   },
