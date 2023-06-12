@@ -1,6 +1,7 @@
 const models= require("../database/models") //requeris la conexion a los modelos
 const productos= models.Producto
 const comentario=models.Comentario
+const op = models.Sequelize.Op;
 
 let dbProduct = require("../db/data"); 
 
@@ -20,8 +21,35 @@ let productsController = {
   add: function (req, res) {
     return res.render('productAdd', {users: dbProduct.usuario });
   },
+
+  // metodo del buscador
   show: function (req, res) {
-    return res.render("search-results", {products:dbProduct.productos});
+
+    let buscado = req.query.search
+
+    let filtrar = {
+      where:[
+        {nombre: {[op.like]: `%${buscado}%` }},
+        {descripcion: {[op.like]: `%${buscado}%`}} //la busqueda por descripcion no anda shoro
+      ],
+      include: [{association:"owner"}]
+      
+    }
+
+    productos.findAll(filtrar)
+
+    .then(function(resultadoDeBusqueda){
+      return res.send(resultadoDeBusqueda)
+    })
+
+    .catch(function(error){
+      console.log(error)
+    })
+
+
+    //return res.send (buscado)
+
+    //return res.render("search-results", {products:dbProduct.productos});
   },
   showProducts: function (req, res) {
     let id = req.params.id;
@@ -33,7 +61,7 @@ let productsController = {
     })
 
     .then(function(resultado){
-      return res.send(resultado.comentarios) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
+      return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
       //return res.render("products",{productUnique: resultado, comentario: resultado.comentarios}) //anda
     })
 
