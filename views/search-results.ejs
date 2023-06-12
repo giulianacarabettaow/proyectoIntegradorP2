@@ -16,20 +16,29 @@
 			<h2 class="col-12"> </h2>
 			<div class="container products-wrapper">
 				<div class="row">
+					<% if (products != "" && products){ %>
+					<% for (let i=0; i < products.length; i++){%>					
 					
-					<div class="col-12 col-sm-6 col-lg-3">
+						<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
-							<a href="/products/id/<%= products.id %>">
+							<a href="/products/id/<%= products[i].id %>">
 								<figure class="product-box_image">
-									<img src="<%= products.imagen %>" alt="<%= products.nombre %>">
+									<img src="<%= products[i].imagen %>" alt="<%= products[i].nombre %>">
 								</figure>
 								<article class="product-box_data">
-									<h2><%= products.nombre %></h2>
-									<p><%= products.descripcion %></p>
-									<p>Comentarios: 12</p>
+									<h2><%= products[i].nombre %></h2>
+									<p><%= products[i].descripcion %></p>
+									<p>Comentarios: <%= products[i].comentarios.length %></p>
 								</article>
 							</a>
+							<% if (products[i].owner != undefined){%>
+								<a href="users/profile/<%= products[i].FkUsuariosId %>"> Subido por <%=products[i].owner.nombre%></a> <!--agregar clase y poner en css-->
+							<% } %>
 						</section>
+						<% } %>
+						<%} else{%>
+							<h2 class="coincidencias" >No se encontraron coincidencias para su búsqueda</h2> <!--agregar esta clase en css-->
+							<%}%>
 					</div>
 					
 				</div>
