@@ -37,8 +37,8 @@ let indexController = {
     )
 
     .then(function(resultadoDeBusqueda){
-     return res.send(resultadoDeBusqueda)
-    // return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
+     //return res.send(resultadoDeBusqueda)
+    return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
     })
 
     .catch(function(error){
