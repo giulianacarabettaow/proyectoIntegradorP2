@@ -40,8 +40,8 @@ let productsController = {
     )
 
     .then(function(resultadoDeBusqueda){
-     // return res.send(resultadoDeBusqueda)
-     return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
+      return res.send(resultadoDeBusqueda)
+     //return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
     })
 
     .catch(function(error){
@@ -60,6 +60,7 @@ let productsController = {
         {association: "comentarios"}
       ]
     })
+  
 
     .then(function(resultado){
       return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
