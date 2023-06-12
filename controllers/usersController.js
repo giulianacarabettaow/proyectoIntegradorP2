@@ -5,9 +5,6 @@ const bcrypt = require('bcryptjs'); //requiero el modulo instalado para hashing
 
 
 let usersController={
-    index: function(req,res){
-        return res.send('anda user index')
-    },
     login: function(req,res){
         if (req.session.user != undefined){
             return res.redirect('profile')

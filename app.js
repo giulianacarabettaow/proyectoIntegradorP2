@@ -54,7 +54,7 @@ app.use(function(req, res, next){
     db.Usuario.findByPk(req.cookies.usuarioId) //buscar el id que corresponda al usuario
     .then((usuario)=>{ 
       req.session.usuario = usuario.dataValues; //entonces requerir la sesion con los datos del usuario
-      res.locals.usuario = usuario.dataValues; //devolver en las vistas la sesion del usuario iniciada
+      res.locals.usuario = usuario.dataValues; //devolver en las vistas la sesion del usuario
       return next();})
     .catch((error)=>{
       console.log(error);
