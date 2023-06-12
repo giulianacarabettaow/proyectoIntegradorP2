@@ -54,12 +54,17 @@ let productsController = {
   },
   showProducts: function (req, res) {
     let id = req.params.id;
-    productos.findByPk(id,{
+    let relaciones= { 
       include: [
-        {association: "owner"},
-        {association: "comentarios"}
-      ]
-    })
+        {
+        all: true,
+        nested: true
+      }]
+    }
+
+    productos.findByPk(id,relaciones)
+
+    // comentario.findAll()
 
     .then(function(resultado){
       return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
