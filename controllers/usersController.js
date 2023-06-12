@@ -2,6 +2,7 @@
 //esto es lo nuevo, habría que ver si corregimos los métodos del controlador
 const db = require('../database/models')
 const comments = db.Comentario
+const users = db.Usuario
 
 const bcrypt = require('bcryptjs'); //requiero el modulo instalado para hashing
 
@@ -68,12 +69,21 @@ let usersController={
         return res.render('partials/headerLogueado')
     },
     showProfile: function(req,res){
-        
-        return res.render('profile', {users: dbUsers.usuario , products: dbUsers.productos})
+       let idUser = req.params.id
+        let relaciones = {
+            include: [
+                {association: "productos",
+                    include: "comentarios"}
+            ]
+        }
+        users.findByPk(idUser, relaciones)
+        .then(function(resultado){
+            return res.send(resultado)
+        })
         
     },
     edit: function(req,res){
-        return res.render('profileEdit', {users: dbUsers.usuario})
+        //return res.render('profileEdit', {users: dbUsers.usuario})
     },
     register: function(req,res){
         return res.render('register')

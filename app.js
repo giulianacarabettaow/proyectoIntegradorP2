@@ -31,13 +31,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true}));
 
- app.use(function(req, res, next){
-   res.locals.usuarioLogueado ={
-         nombre: req.body.nombre
-   }
-   return next();
- });
-
 //middleware session
 app.use(function(req, res, next){ //con est función pedimos que todo lo que hagamos con req.session se pase a las vistas
   if (req.session.usuario != undefined){
