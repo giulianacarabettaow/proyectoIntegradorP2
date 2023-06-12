@@ -1,6 +1,6 @@
 const models= require("../database/models") //requeris la conexion a los modelos
 const productos= models.Producto
-const comentario=models.Comentario
+const comentario = models.Comentario
 const op = models.Sequelize.Op;
 
 let dbProduct = require("../db/data"); 

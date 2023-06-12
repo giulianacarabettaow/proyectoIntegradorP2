@@ -18,7 +18,7 @@ let indexController = {
         .catch(error=>console.log(error)) //=> arrow function
     },
     show: function (req, res) {
-        return res.render("search-results", {products:db.productos});
+      //  return res.render("search-results", {products:db.productos});
       },
 }
 
