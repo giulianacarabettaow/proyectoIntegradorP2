@@ -35,7 +35,7 @@ module.exports = function(sequelize, dataTypes){
         underscored: false,
     }
     const Comentario = sequelize.define(alias, cols, config);
-
+        // a Comentario (que le pasamos el sequelize), le agregamos una propiedad associate con las relaciones dentro
     Comentario.associate = function(models){
         //Creo las relaciones con otros modelos
         //relacion con usuario

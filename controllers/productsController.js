@@ -1,28 +1,55 @@
+const models= require("../database/models") //requeris la conexion a los modelos
+const productos= models.Producto
+const comentario=models.Comentario
 
-let dbProduct = require("../db/data");
+let dbProduct = require("../db/data"); 
 
 let productsController = {
   index: function (req, res) {
-    return res.render('allProducts', {allProd: dbProduct.productos});
+    productos.findAll({
+      include:[{association:"owner"}]
+    })
+    .then(function(resultadoAll){
+
+     // return res.send(resultadoAll)
+      return res.render("allProducts", {allProd:resultadoAll})
+      //return res.render('allProducts', {allProd: dbProduct.productos});
+    })
   },
 
   add: function (req, res) {
-    return res.render('productAdd', {users: dbProduct.usuario }); //no anda la ruta
+    return res.render('productAdd', {users: dbProduct.usuario });
   },
   show: function (req, res) {
     return res.render("search-results", {products:dbProduct.productos});
   },
   showProducts: function (req, res) {
     let id = req.params.id;
-    let resultado = [];
-    for (let i = 0; i < dbProduct.productos.length; i++) {
-      if (dbProduct.productos[i].id == id){
-        resultado.push(dbProduct.productos[i]);
-        console.log(resultado[0]);
-      }
-    }
-    return res.render("products", { productUnique: resultado[0], comentario: dbProduct.comentarios }); 
+    productos.findByPk(id,{
+      include: [
+        {association: "owner"},
+        {association: "comentarios"}
+      ]
+    })
+
+    .then(function(resultado){
+      return res.send(resultado.comentarios) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
+      //return res.render("products",{productUnique: resultado, comentario: resultado.comentarios}) //anda
+    })
+
+
+    //let resultado = [];
+    //let i = 0; i < dbProduct.productos.length; i++) {
+     // if (dbProduct.productos[i].id == id){
+     //   resultado.push(dbProduct.productos[i]);
+    //    console.log(resultado[0]);
+    //  }
+   // }
+    //return res.render("products", { productUnique: resultado[0], comentario: dbProduct.comentarios });
+    
+  
   },
+
   register: function(req,res){
     return res.render('register')
   },

@@ -1,10 +1,18 @@
-let dbUsers= require('../db/data')
+//let dbUsers= require('../db/data')
 //esto es lo nuevo, habría que ver si corregimos los métodos del controlador
 const db = require('../database/models')
+const comments = db.Comentario
+
 const bcrypt = require('bcryptjs'); //requiero el modulo instalado para hashing
 
-
+// este no servia para nada entonces lo use para chequear q no me trae data (a mi, nacho) de la DB de comentarios
 let usersController={
+    index: function(req,res){
+        comments.findAll()
+        .then(function(comentarios){
+            return res.send(comentarios)
+        })
+    },
     login: function(req,res){
         if (req.session.user != undefined){
             return res.redirect('profile')
