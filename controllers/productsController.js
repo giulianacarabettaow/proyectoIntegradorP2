@@ -40,7 +40,7 @@ let productsController = {
     )
 
     .then(function(resultadoDeBusqueda){
-      return res.send(resultadoDeBusqueda)
+     return res.send(resultadoDeBusqueda)
      //return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
     })
 
@@ -67,20 +67,19 @@ let productsController = {
 
     .then(function(resultado){
 
-      let detailProduct = {
-        id: resultado.id,
-        nombre: resultado.nombre,
-        descripcion: resultado.descripcion,
-        imagen: resultado.imagen,
-        precio: resultado.precio,
-        FkUsuarioId: resultado.FkUsuarioId,
-        owner: resultado.owner,
-        comentarios: resultado.comentarios
-      }
+      // let detailProduct = {
+      //   id: resultado.id,
+      //   nombre: resultado.nombre,
+      //   descripcion: resultado.descripcion,
+      //   imagen: resultado.imagen,
+      //   precio: resultado.precio,
+      //   FkUsuarioId: resultado.FkUsuarioId,
+      //   id: resultado.id
+      // }
 
 
 
-      return res.send(detailProduct) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
+      return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
       //return res.render("products",{productUnique: resultado, comentario: resultado.comentarios}) //anda
     })
 
