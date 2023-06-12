@@ -42,14 +42,13 @@ app.use(function(req, res, next){ //con est función pedimos que todo lo que hag
 
 //Middleware de cookies (la configuración está en el controlador)
 app.use(function(req, res, next){
-  res.cookie('sesionDelUsuario')
   if(req.cookies.usuarioId != undefined && req.session.user ==undefined){ //si existe una cookie para cierto id, pero no se encuentra una sesion
     db.Usuario.findByPk(req.cookies.usuarioId) //buscar el id que corresponda al usuario
     .then((usuario)=>{ 
       req.session.usuario = usuario.dataValues; //entonces requerir la sesion con los datos del usuario
       res.locals.usuario = usuario.dataValues; //devolver en las vistas la sesion del usuario
-      return next();})
-    .catch((error)=>{
+      return next();
+    }).catch((error)=>{
       console.log(error);
     });
   }else {
