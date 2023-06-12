@@ -20,7 +20,7 @@
         <div class="row">
           <article class="col-12 col-lg-8 product-detail-info">
             <img
-              src= "<%= productUnique.imagen %>"
+              src= "/images/products/<%=productUnique.imagen %>"
               alt="<%= productUnique.nombre%>"
               class="product-detail-img"
             />
@@ -34,7 +34,7 @@
             <section class="comments">
               <% for ( let j=0; j < comentario.length ; j++){ %>
               <article>
-                <img src="<%= comentario[j].fotoDePerfil %>" alt="<%=comentario[j].Nombre%>" />
+                <img src="/images/users/<%= comentario[j].fotoDePerfil %>" alt="<%=comentario[j].Nombre%>" /> //cambiar nombre de las imagenes creo
                 <div class="data">
                   <p class="user">
                     <strong>

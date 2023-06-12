@@ -10,7 +10,7 @@
 				<h2 class="products-title">Ingresar</h2> 
 				<!-- a partir de esto estoy trabajando con el formulario de ingreso-->
 				<article>
-					<form method="POST" action="/users/profile">
+					<form method="POST" action=""> 		<!--cambie profile por login-->
 						
 						<label class="form-label">Nombre de usuario:</label>
 						<input type="text" name="username" placeholder="" class="form-input">
@@ -20,8 +20,7 @@
 
 						<label id="recuerdame" class="form-label" >Recuérdame <input type="checkbox" name="recuerdame" >
 						</label>
-						
-						<button type="submit"> Ingresar</button>
+						<button type="submit">Ingresar</button>
 					</form>
 					
 					<% if(locals.errors){ %>
