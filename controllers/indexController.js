@@ -1,5 +1,7 @@
 const models= require("../database/models") //requeris la conexion a los modelos
 const productos= models.Producto
+const comentario=models.Comentario
+const op = models.Sequelize.Op;
 
 
 //let db= require('../db/data')
@@ -17,9 +19,31 @@ let indexController = {
         })
         .catch(error=>console.log(error)) //=> arrow function
     },
-    show: function (req, res) {
-        return res.render("search-results", {products:db.productos});
-      },
+
+    show: function (req, res) {   
+        
+        let buscado = req.query.search // Nos trae la query string, especialmente el VALUE del formulario. 
+
+        productos.findAll({
+        where:{
+            [op.or]: [
+            {nombre: {[op.like]: `%${buscado}%` }},
+            {descripcion: {[op.like]: `%${buscado}%`}}
+        ]},
+        include: [
+            {association:"owner"},
+            {association:"comentarios"}
+        ]}
+    )
+
+    .then(function(resultadoDeBusqueda){
+     return res.send(resultadoDeBusqueda)
+    // return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
+    })
+
+    .catch(function(error){
+      console.log(error)
+    })}
 }
 
 module.exports= indexController;

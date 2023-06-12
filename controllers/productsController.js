@@ -1,6 +1,7 @@
 const models= require("../database/models") //requeris la conexion a los modelos
 const productos= models.Producto
 const comentario=models.Comentario
+const user=models.Usuario
 const op = models.Sequelize.Op;
 
 let dbProduct = require("../db/data"); 
@@ -19,7 +20,7 @@ let productsController = {
   },
 
   add: function (req, res) {
-    return res.render('productAdd', {users: dbProduct.usuario });
+   // return res.render('productAdd', {users: dbProduct.usuario });
   },
 
   // metodo del buscador
@@ -42,17 +43,13 @@ let productsController = {
 
     .then(function(resultadoDeBusqueda){
      return res.send(resultadoDeBusqueda)
-     //return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
+    // return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
     })
 
     .catch(function(error){
       console.log(error)
     })
-
-    
-
-    //return res.render("search-results", {products:dbProduct.productos});
-  },
+    },
   showProducts: function (req, res) {
     let id = req.params.id;
     let relaciones= { 
@@ -64,50 +61,23 @@ let productsController = {
     }
     productos.findByPk(id,relaciones)
 
-    // comentario.findAll()
-
     .then(function(resultado){
 
-      // let detailProduct = {
-      //   id: resultado.id,
-      //   nombre: resultado.nombre,
-      //   descripcion: resultado.descripcion,
-      //   imagen: resultado.imagen,
-      //   precio: resultado.precio,
-      //   FkUsuarioId: resultado.FkUsuarioId,
-      //   id: resultado.id
-      // }
-
-
-
-      //return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
-      return res.render("products",{productUnique: resultado, comentario: resultado.comentarios}) //anda
+      return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
+     // return res.render("products",{productUnique: resultado, comentario: resultado.comentarios}) //anda
     })
-
-
-    //let resultado = [];
-    //let i = 0; i < dbProduct.productos.length; i++) {
-     // if (dbProduct.productos[i].id == id){
-     //   resultado.push(dbProduct.productos[i]);
-    //    console.log(resultado[0]);
-    //  }
-   // }
-    //return res.render("products", { productUnique: resultado[0], comentario: dbProduct.comentarios });
-    
-  
   },
 
   register: function(req,res){
     return res.render('register')
   },
-  edit: function(req,res){
-    return res.render('profileEdit', {users: dbUsers.usuario})
-  },
+ 
   login: function(req,res){
     return res.render('login')
   },
   edit: function(req,res){
-    return res.render('profileEdit', {users: dbUsers.usuario})
+    return res.render("profileEdit", {users: user})
+    //return res.render('profileEdit', {users: dbUsers.usuario})
   },
   
 };
