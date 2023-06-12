@@ -77,7 +77,7 @@ let usersController={
     show: function(req,res){
         return res.render('partials/headerLogueado')
     },
-    showProfile: function(req,res){
+    showProfile: function(req,res){ //anda por url 
        let idUser = req.params.id
         let relaciones = {
             include: [
