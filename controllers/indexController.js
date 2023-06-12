@@ -10,7 +10,10 @@ let indexController = {
     products: function(req,res){
         productos.findAll({
             limit: 8,
-            include:[{association:"owner"}]
+            include:[
+                {association:"owner"},
+                {association:"comentarios"}
+        ]
         })
         .then(function(data){ //data trae la info que encuentra el findAll
             //return res.send (data)
