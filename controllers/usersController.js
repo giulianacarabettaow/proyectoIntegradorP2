@@ -65,7 +65,8 @@ let usersController={
     processLogin: function(req,res){
          let info= req.body
 
-         return res.send (info)
+         //return res.send (info)
+         return res.redirect('/users/profile/:id') //y ese ID de donde lo sacamos? cual es? create, update o demas. Comparar con la base de datos
      },
 
     logout: function(req, res){
@@ -96,77 +97,99 @@ let usersController={
     register: function(req,res){
         return res.render('register')
     },
-    processRegister: function(req,res){          
-        db.Usuario.findOne({ //pedido asincronico
-            where: [{email: req.body.email}]
+    // processRegister: function(req,res){          
+    //     db.Usuario.findOne({ //pedido asincronico
+    //         where: [{email: req.body.email}]
+    //     })
+    //     .then((result)=>{ 
+    //         let errors= {};
+    //         if (result != undefined){ //si existe un mail registrado
+    //             errors.message= "Este email ya fue registrado"; 
+    //             res.locals.errors= errors.message;   //entonces quiero que veas un mensaje de que ya estas registrado
+    //             return res.render('register');
+    //         }else{  //MENSAJES DE ERROR PARA LOS USUARIOS
+    //                 if(req.body.dni){ 
+    //                     errors.message = "Debes ingresar tu D.N.I."; //aviso al usuario
+    //                     res.locals.errors = errors.message;
+    //                     return res.render('register');
+    //                 } else if(req.body.email== ''){
+    //                     errors.message= "Debes ingresar un email"; 
+    //                     res.locals.errors= errors.message;   
+    //                     return res.render('register');
+    //                 } else if(req.body.fechaDeNacimiento== ''){
+    //                     errors.message= "Debes ingresar tu fecha de nacimiento"; 
+    //                     res.locals.errors= errors.message;   
+    //                     return res.render('register');
+    //                 } else if(req.body.nombre== ''){
+    //                     errors.message= "Debes ingresar tu nombre"; 
+    //                     res.locals.errors= errors.message;   
+    //                     return res.render('register');
+    //                 } else if(req.body.email== ''){
+    //                     errors.message= "Debes ingresar un email"; 
+    //                     res.locals.errors= errors.message;   
+    //                     return res.render('register');
+    //                 } else if(req.body.contr== ''){
+    //                     errors.message= "Debes ingresar una contraseña"; 
+    //                     res.locals.errors= errors.message;   
+    //                     return res.render('register');
+    //                 } else if(req.body.contr.length < 3){
+    //                     errors.message= "La contraseña debe contener más de 3 caracteres"; 
+    //                     res.locals.errors= errors.message;   
+    //                     return res.render('register');
+    //                 } else{
+    //                     let contrHasheada = bcrypt.hashSync(req.body.contr, 10 );
+    //                     if (req.file != undefined){
+    //                         datosDelUsuario.fotoDePerfil = req.file.filename
+    //                     }else{
+    //                         datosDelUsuario.fotoDePerfil = 'default_avatar.png'
+    //                     }
+    //                     db.Usuario.create(
+    //                         {
+    //                             email: req.body.email,
+    //                             nombre: req.body.nombre,
+    //                             contr: contrHasheada,
+    //                             fotoDePerfil: '',
+    //                             fechaDeNacimiento: req.body.fechaDeNacimiento,
+    //                             dni: req.body.dni,
+    //                             createdAt: req.body.createdAt,
+    //                         })
+    //                     .then((result)=>{
+    //                         return res.redirect('profile')
+    //                     })
+    //                     .catch((error)=>{
+    //                         console.log(error)
+    //                     });
+
+    //                 }
+    //             } //cierra el else grande
+    //         }) 
+    //         .catch((error)=>{
+    //             console.log(error)
+    //         }) 
+    // },
+
+    processRegister: function(req,res){ //no anda todavia bien pero trae la data 
+        let userData = req.body
+
+        let newUser = {
+            nombre: userData.username,
+            email: userData.email,
+            contr: userData.password,
+            fechaDeNacimiento:userData.fechaNacimiento,
+            fotoDePerfil:userData.fotoPerfil,
+            dni:userData.dni
+        }
+        users.create(newUser)
+
+        .then(function(createdUser){
+
+            return res.redirect('profile')
         })
-        .then((result)=>{ 
-            let errors= {};
-            if (result != undefined){ //si existe un mail registrado
-                errors.message= "Este email ya fue registrado"; 
-                res.locals.errors= errors.message;   //entonces quiero que veas un mensaje de que ya estas registrado
-                return res.render('register');
-            }else{  //MENSAJES DE ERROR PARA LOS USUARIOS
-                    if(req.body.dni){ 
-                        errors.message = "Debes ingresar tu D.N.I."; //aviso al usuario
-                        res.locals.errors = errors.message;
-                        return res.render('register');
-                    } else if(req.body.email== ''){
-                        errors.message= "Debes ingresar un email"; 
-                        res.locals.errors= errors.message;   
-                        return res.render('register');
-                    } else if(req.body.fechaDeNacimiento== ''){
-                        errors.message= "Debes ingresar tu fecha de nacimiento"; 
-                        res.locals.errors= errors.message;   
-                        return res.render('register');
-                    } else if(req.body.nombre== ''){
-                        errors.message= "Debes ingresar tu nombre"; 
-                        res.locals.errors= errors.message;   
-                        return res.render('register');
-                    } else if(req.body.email== ''){
-                        errors.message= "Debes ingresar un email"; 
-                        res.locals.errors= errors.message;   
-                        return res.render('register');
-                    } else if(req.body.contr== ''){
-                        errors.message= "Debes ingresar una contraseña"; 
-                        res.locals.errors= errors.message;   
-                        return res.render('register');
-                    } else if(req.body.contr.length < 3){
-                        errors.message= "La contraseña debe contener más de 3 caracteres"; 
-                        res.locals.errors= errors.message;   
-                        return res.render('register');
-                    } else{
-                        let contrHasheada = bcrypt.hashSync(req.body.contr, 10 );
-                        if (req.file != undefined){
-                            datosDelUsuario.fotoDePerfil = req.file.filename
-                        }else{
-                            datosDelUsuario.fotoDePerfil = 'default_avatar.png'
-                        }
-                        db.Usuario.create(
-                            {
-                                email: req.body.email,
-                                nombre: req.body.nombre,
-                                contr: contrHasheada,
-                                fotoDePerfil: '',
-                                fechaDeNacimiento: req.body.fechaDeNacimiento,
-                                dni: req.body.dni,
-                                createdAt: req.body.createdAt,
-                            })
-                        .then((result)=>{
-                            return res.redirect('profile')
-                        })
-                        .catch((error)=>{
-                            console.log(error)
-                        });
 
-                    }
-                } //cierra el else grande
-            }) 
-            .catch((error)=>{
-                console.log(error)
-            }) 
-    },
-
+        .catch(function(error){
+            console.log(error)
+        })
+    }
 
 } //cierra el modulo del controlador
 
