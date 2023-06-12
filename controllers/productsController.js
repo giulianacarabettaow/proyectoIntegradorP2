@@ -25,13 +25,14 @@ let productsController = {
   // metodo del buscador
   show: function (req, res) {
 
-    let buscado = req.query.search
+    let buscado = req.query.search // Nos trae la query string, especialmente el VALUE del formulario. 
 
     productos.findAll({
-      where:[
+      where:{
+        [op.or]: [
         {nombre: {[op.like]: `%${buscado}%` }},
-        {descripcion: {[op.like]: `%${buscado}%`}} //la busqueda por descripcion no anda shoro
-      ],
+        {descripcion: {[op.like]: `%${buscado}%`}}
+      ]},
       include: [
         {association:"owner"},
         {association:"comentarios"}
