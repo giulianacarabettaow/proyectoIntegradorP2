@@ -56,7 +56,7 @@ module.exports = function(sequelize, dataTypes){
         });
         Producto.hasMany(models.Comentario,{
             as: "comentarios",
-            foreignKey:"id"
+            foreignKey:"FkProductosId"
 
         })
     }
