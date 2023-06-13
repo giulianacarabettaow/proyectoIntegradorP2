@@ -16,9 +16,9 @@
 			<h2 class="col-12"> </h2>
 			<div class="container products-wrapper">
 				<div class="row">
-					<% if (products != "" && products){ %>
-					<% for (let i=0; i < products.length; i++){%>					
-						<div class="col-12 col-sm-6 col-lg-3">
+					<% if (products != "" && products){ %>				
+					<div class="col-12 col-sm-6 col-lg-3">
+						<% for (let i=0; i < products.length; i++){%>
 						<section class="product-box">
 							<a href="/products/id/<%= products[i].id %>">
 								<figure class="product-box_image">
