@@ -97,61 +97,61 @@ let usersController={
         return res.render('register')
     },
     processRegister: function(req,res){          
-        db.Usuario.findOne({ //pedido asincronico
-            where: [{email: req.body.email}]
-        })
-        .then((result)=>{ 
-            let errors= {};
-            if (result != undefined){ //si existe un mail registrado
+        let errors= {}
+
+        db.Usuario.findOne(
+            {where: [{email: req.body.email}]})
+        .then((resultado)=>{ 
+            if (resultado != null){ //si existe un mail registrado
                 errors.message= "Este email ya fue registrado"; 
-                res.locals.errors= errors.message;   //entonces quiero que veas un mensaje de que ya estas registrado
+                res.locals.errors= errors   //entonces quiero que veas un mensaje de que ya estas registrado
                 return res.render('register');
             }else{  //MENSAJES DE ERROR PARA LOS USUARIOS
-                    if(req.body.dni){ 
+                    if(req.body.dni == ''){ 
                         errors.message = "Debes ingresar tu D.N.I."; //aviso al usuario
-                        res.locals.errors = errors.message;
+                        res.locals.errors = errors;
                         return res.render('register');
                     } else if(req.body.email== ''){
                         errors.message= "Debes ingresar un email"; 
-                        res.locals.errors= errors.message;   
+                        res.locals.errors= errors;   
                         return res.render('register');
                     } else if(req.body.fechaDeNacimiento== ''){
                         errors.message= "Debes ingresar tu fecha de nacimiento"; 
-                        res.locals.errors= errors.message;   
+                        res.locals.errors= errors;   
                         return res.render('register');
                     } else if(req.body.nombre== ''){
                         errors.message= "Debes ingresar tu nombre"; 
-                        res.locals.errors= errors.message;   
+                        res.locals.errors= errors;   
                         return res.render('register');
                     } else if(req.body.email== ''){
                         errors.message= "Debes ingresar un email"; 
-                        res.locals.errors= errors.message;   
+                        res.locals.errors= errors;   
                         return res.render('register');
                     } else if(req.body.contr== ''){
                         errors.message= "Debes ingresar una contraseña"; 
-                        res.locals.errors= errors.message;   
+                        res.locals.errors= errors;   
                         return res.render('register');
                     } else if(req.body.contr.length < 3){
                         errors.message= "La contraseña debe contener más de 3 caracteres"; 
-                        res.locals.errors= errors.message;   
+                        res.locals.errors= errors;   
                         return res.render('register');
                     } else{
                         let contrHasheada = bcrypt.hashSync(req.body.contr, 10 );
-                        if (req.file != undefined){
-                            datosDelUsuario.fotoDePerfil = req.file.filename
-                        }else{
-                            datosDelUsuario.fotoDePerfil = 'default_avatar.png'
-                        }
-                        db.Usuario.create(
-                            {
-                                email: req.body.email,
+                        let userInfo ={
+                            email: req.body.email,
                                 nombre: req.body.nombre,
                                 contr: contrHasheada,
                                 fotoDePerfil: '',
                                 fechaDeNacimiento: req.body.fechaDeNacimiento,
                                 dni: req.body.dni,
                                 createdAt: req.body.createdAt,
-                            })
+                        }
+                        if (req.file != undefined){
+                            userInfo.fotoDePerfil = req.file.filename
+                        }else{
+                            userInfo.fotoDePerfil = 'default_avatar.png'
+                        }
+                        db.Usuario.create(userInfo)
                         .then((result)=>{
                             return res.redirect('profile')
                         })

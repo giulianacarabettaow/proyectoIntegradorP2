@@ -4,11 +4,11 @@
 <%- include('./partials/head') %>
 
 <body>
-	<% if (locals.usuarioLogueado != undefined){ %>
-		<%- include('./partials/headerLogueado') %> 
-		<% }else { %>
+	 <% //if (locals.usuarioLogueado != undefined){ %>
+		<%- // include('./partials/headerLogueado') %> 
+		<%  //}else { %> -->
 		<%- include('./partials/header') %> 
-		<% } %>
+		<% //} %>
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
@@ -46,7 +46,9 @@
 						<label class="form-label">Foto de perfil:</label>
 						<input type="text"  name="fotoPerfil" class="form-input">
 						
-						
+						<% if (locals.errors){%>
+							<p class="error"><%=locals.errors.message%></p>
+						<%}%>
 						<button type="submit" class="form-input"> Crear perfil</button>
 					</form>
 				</article>
