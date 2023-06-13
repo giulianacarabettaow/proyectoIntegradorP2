@@ -36,7 +36,7 @@ let productsController = {
       ]},
       include: [
         {association:"owner"},
-        {association:"comentarios"}
+        {association:"comentarios"} //hay que ordenarlos de manera descendiente
     ]
     }
     )
@@ -51,8 +51,8 @@ let productsController = {
     },
   showProducts: function (req, res) {
     let id = req.params.id;
-    let relaciones= { 
-      include: [
+    let relaciones= {
+        include: [
         {
         all: true,
         nested: true,

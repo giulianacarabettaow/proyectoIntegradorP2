@@ -33,6 +33,7 @@ let indexController = {
             {nombre: {[op.like]: `%${buscado}%` }},
             {descripcion: {[op.like]: `%${buscado}%`}}
         ]},
+        order:[['createdAt', 'DESC']] ,
         include: [
             {association:"owner"},
             {association:"comentarios"}
