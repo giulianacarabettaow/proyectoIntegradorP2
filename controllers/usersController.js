@@ -21,6 +21,20 @@ let usersController={
             return res.render('login')
         }
     },
+
+    processLogin: function(req,res){
+        let info={
+             nombre: req.body.username,
+             contr: req.body.password
+          } 
+
+        req.session.user=info
+
+        return res.send (req.session)
+        
+        // return res.redirect('/users/profile/:id') //y ese ID de donde lo sacamos? cual es? create, update o demas. Comparar con la base de datos
+     },
+
 //      processLogin: function(req,res){
 //          let errors = {}; //objeto vacío al que le agregamos métodos
 //          if (req.body.email ==''){
@@ -62,13 +76,7 @@ let usersController={
 //      }
 //  },
 
-    processLogin: function(req,res){
-         let info= req.body
-
-         //return res.send (info)
-         return res.redirect('/users/profile/:id') //y ese ID de donde lo sacamos? cual es? create, update o demas. Comparar con la base de datos
-     },
-
+  
     logout: function(req, res){
         req.session.destroy();
         res.clearCookie(usuarioId);
@@ -183,7 +191,8 @@ let usersController={
 
         .then(function(createdUser){
 
-            return res.redirect('profile')
+            return res.send(createdUser)
+            //return res.redirect('profile')
         })
 
         .catch(function(error){
