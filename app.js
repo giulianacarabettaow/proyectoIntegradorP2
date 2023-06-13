@@ -1,7 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser'); //con la version nueva la podemos borrar
 var logger = require('morgan');
 const session = require('express-session');
 
