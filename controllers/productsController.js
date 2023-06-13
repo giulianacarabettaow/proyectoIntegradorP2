@@ -63,7 +63,7 @@ let productsController = {
     .then(function(resultado){
 
       //return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
-      return res.render("products",{productUnique: resultado, comentario: resultado.comentarios}) //anda
+      return res.render("products",{productUnique: resultado, comentario: resultado.comentarios, owner:resultado.owner}) //anda
     })
   },
 
