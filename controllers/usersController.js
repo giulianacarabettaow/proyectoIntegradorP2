@@ -141,9 +141,9 @@ let usersController={
                     users.create(newUser) 
 
                     .then(function(created){
-                        return res.redirect('users/login')
+                        //return res.redirect('users/login')
                         //return res.send(created)
-                        //return res.send('Ro')
+                        return res.send('Ro')
                     })
                     .catch(function(error){
                         console.log('El error es: ' + error)
