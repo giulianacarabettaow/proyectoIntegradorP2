@@ -37,7 +37,7 @@ app.use(function(req, res, next){ //con est función pedimos que todo lo que hag
     res.locals.user= req.session.usuario;
     return next();
   }
-  return next(); //para que no se frene el proyecto
+  return next(); //para que no se frene el proyecto. <Una vez que se completo siga con el flujo
 })
 
 //Middleware de cookies (la configuración está en el controlador)
