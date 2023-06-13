@@ -122,74 +122,34 @@ let usersController={
        
         let userData = req.body
         users.findOne( {where: 
-            [{email: userData.email}]//,
-           // { dni: userData.dni}] 
+            [{email: userData.email}]
         })
         .then(function(createdUser){
-            let errors= {};
-             if (createdUser != undefined){ //si existe un mail registrado
-                 errors.message= "Este email ya fue registrado"
-                 res.locals.errors= errors   //entonces quiero que veas un mensaje de que ya estas registrado
-                 return res.render('register');
-             } else{  //MENSAJES DE ERROR PARA LOS USUARIOS
-                if(req.body.dni == ''){ 
-                    errors.message = "Debes ingresar tu D.N.I." //aviso al usuario
-                    res.locals.errors = errors
-                    return res.render('register') 
-                } 
-                else if (req.body.fechaDeNacimiento == ''){
-                    errors.message= "Debes ingresar tu fecha de nacimiento" 
-                    res.locals.errors= errors   
-                    return res.render('register')
-                } else if(req.body.nombre== ''){
-                    errors.message= "Debes ingresar tu nombre"
-                    res.locals.errors= errors   
-                    return res.render('register')
-                } else if(req.body.email== ''){
-                    errors.message= "Debes ingresar un email" 
-                    res.locals.errors= errors   
-                    return res.render('register')
-                } else if(req.body.contr== ''){
-                    errors.message= "Debes ingresar una contraseña" 
-                    res.locals.errors= errors   
-                    return res.render('register')
-                } //else if(req.body.contr.length < 3){
-                   //  errors.message= "La contraseña debe contener más de 3 caracteres" 
-                   //  res.locals.errors= errors   
-                    // return res.render('register')
-                //} 
-                else{
-                    //let contrHasheada = bcrypt.hashSync(req.body.contr, 10)
+            
+                  
+                    let contrHasheada = bcrypt.hashSync(req.body.contr, 10)
                     
                     let form = req.body
                     let newUser = {
-                        nombre: form.username,
                         email: form.email,
-                        contr: form.password,
-                        fechaDeNacimiento:form.fechaNacimiento,
+                        nombre: form.username,
+                        contr: contrHasheada,
                         fotoDePerfil:form.fotoPerfil,
+                        fechaDeNacimiento:form.fechaNacimiento,
                         dni:form.dni
                     }
-                    // if (req.file != undefined){ //ver el req.file
-                    //     datosDelUsuario.fotoDePerfil = req.file.filename
-                    //     } else {
-                    //     datosDelUsuario.fotoDePerfil = 'default_avatar.png'
-                    //     }
-                    users.create(newUser)
+                    users.create(newUser) 
 
                     .then(function(created){
-                        return res.send(created)
-                        //return res.redirect('/user/login')
+                        return res.redirect('users/login')
+                        //return res.send(created)
+                        //return res.send('Ro')
                     })
                     .catch(function(error){
                         console.log('El error es: ' + error)
                     });
-
-                    }    
-             }    
-        })
-
-        .catch(function(error){
+                })   
+             .catch(function(error){
             console.log(error)
         })
     }

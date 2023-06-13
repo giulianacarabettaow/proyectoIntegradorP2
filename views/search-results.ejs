@@ -28,11 +28,11 @@
 									<h2><%= products[i].nombre %></h2>
 									<p><%= products[i].descripcion %></p>
 									<p>Comentarios: <%= products[i].comentarios.length %></p>
+									<% if (products[i].owner != undefined){%>
+										<a href="users/profile/<%= products[i].FkUsuariosId %>"> Subido por <%=products[i].owner.nombre%></a> <!--agregar clase y poner en css-->
+									<% } %>
 								</article>
 							</a>
-							<% if (products[i].owner != undefined){%>
-								<a href="users/profile/<%= products[i].FkUsuariosId %>"> Subido por <%=products[i].owner.nombre%></a> <!--agregar clase y poner en css-->
-							<% } %>
 						</section>
 						<% } %>
 						<%} else{%>
