@@ -38,7 +38,8 @@ let productsController = {
       include: [
         {association:"owner"},
         {association:"comentarios"} //hay que ordenarlos de manera descendiente
-    ]
+    ],
+      order:[['createdAt', 'DESC']]
     }
     )
 
