@@ -25,55 +25,34 @@ let usersController={
              nombre: req.body.username,
              contr: req.body.password
           } 
+          let errors = {}
+        
+          if (info.nombre == ''){
+            errors.message = 'Debes ingresar tu nombre de usuario'
+            return res.render('login')
+          }
+          else if (info.contr == ''){
+            errors.message = 'Debes ingresar tu contrseña'
+            return res.render('login')
+          }
+          else{
+            users.findOne({where:[
+                    {nombre:info.nombre}
+                ]
+            }) 
+            .then(function(userLogged){
+                let check = bcrypt.compareSync(info.contr,userLogged.contr)
 
-        req.session.user=info
+                if(check){
+                    //
+                }
 
-        return res.send (req.session)
+            })
+
+          }
         
         // return res.redirect('/users/profile/:id') //y ese ID de donde lo sacamos? cual es? create, update o demas. Comparar con la base de datos
      },
-
-    //      processLogin: function(req,res){
-    //          let errors = {}; //objeto vacío al que le agregamos métodos
-        //          if (req.body.email ==''){
-    //              errors.message = 'Debes ingresar tu email'; //message es un método de errors
-    //              res.locals.errors= errors; //asi pasamos el error a la vista
-            
-    //             return res.render('login'); //vuelve al login
-    //          } else if(req.body.contr == ''){
-    //              errors.message = 'Debes ingresar tu contraseña';
-    //              res.locals.errors= errors;
-    //              return res.render('login');
-    //          }else{
-    //              db.Usuario.findOne({
-    //                  where: [
-    //                      {email: req.body.email}
-    //                  ]})
-    //             .then((resultado)=>{
-    //                  if (resultado != null){ //condicional anidado
-    //                      let check = bcrypt.compareSync(req.body.contr, contrHasheada) //si hay coincidencia con el mail, comparar la contraseña con el hash
-    //                      if(check == true){
-    //                          req.session.usuario = resultado.dataValues;
-    //                          if(req.body.recuerdame != undefined){
-    //                              res.cookie('usuarioId', resultado.dataValues.id, {maxAge : 1000* 60 * 5 })
-    //                          }
-    //                          return res.redirect('profile'); //si el usuario existe, redirigir al perfil
-    //                      } else {
-    //                              errors.message = 'La contraseña es incorrecta'; 
-    //                              res.locals.errors=errors;
-    //                              return res.render ('login');}
-    //                  } else{
-    //                      errors.message= 'Este usuario no se encuentra registrado'; //en las vistas podemos hacer un condicional para que, junto con este mensaje muestre un link a la página de registro
-    //                      res.locals.errors=errors;
-    //                      return res.render('login');
-    //                  }
-    //              })
-    //          .catch(function(error){
-    //              console.log(error);
-    //          })
-    //      }
-    //  },
-
   
     logout: function(req, res){
         req.session.destroy();
