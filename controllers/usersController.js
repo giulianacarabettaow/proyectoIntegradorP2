@@ -3,6 +3,7 @@ const comments = db.Comentario
 const users = db.Usuario
 
 const bcrypt = require('bcryptjs'); //requiero el modulo instalado para hashing
+const { use } = require('../routes');
 
 // este no servia para nada entonces lo use para chequear q no me trae data (a mi, nacho) de la DB de comentarios
 let usersController={
@@ -41,14 +42,29 @@ let usersController={
                 ]
             }) 
             .then(function(userLogged){
-                let check = bcrypt.compareSync(info.contr,userLogged.contr)
 
-                if(check){
-                    //
+                if(userLogged != null){
+                    let encripted = bcrypt.compareSync (info.contr,userLogged.contr)
+
+                    //req.session.user=userLogged.dataValues;
+
+                    //return res.redirect('/')
+                    return res.send(userLogged)
+                }
+                else{
+                    errors.message = 'Contraseña incorrecta'
+                    res.locals.errors = errors
                 }
 
+                // hago un if si userLogged es != null (existe) comparo lo contr. si la contraseña me da bien AHI recien subo el usuario a session
+                // cujando ponen req.session.user= pongo la varuable q va a subir el usuario 
+                //if con compared hash contr y si no esta el nombre mandar a register
+                
             })
 
+            .catch(function(error){
+                console.log(error)
+            })
           }
         
         // return res.redirect('/users/profile/:id') //y ese ID de donde lo sacamos? cual es? create, update o demas. Comparar con la base de datos
@@ -99,11 +115,11 @@ let usersController={
 
     processRegister: function(req,res){ //no anda todavia bien pero trae la data 
         let form = req.body;
-        //let contrHasheada = bcrypt.hashSync(req.body.contr, 10);
+        let contrHasheada = bcrypt.hashSync(req.body.contr, 10);
         let newUser = {
                         email: form.email,
                         nombre: form.username,
-                        contr: form.password,
+                        contr: contrHasheada,
                         fotoDePerfil:form.fotoPerfil,
                         fechaDeNacimiento:form.fechaNacimiento,
                         dni:form.dni
