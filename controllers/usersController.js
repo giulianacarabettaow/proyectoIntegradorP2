@@ -119,21 +119,12 @@ let usersController={
     },
 
     processRegister: function(req,res){ //no anda todavia bien pero trae la data 
-       
-        let userData = req.body
-        users.findOne( {where: 
-            [{email: userData.email}]
-        })
-        .then(function(createdUser){
-            
-                  
-                    let contrHasheada = bcrypt.hashSync(req.body.contr, 10)
-                    
-                    let form = req.body
-                    let newUser = {
+        let form = req.body;
+        //let contrHasheada = bcrypt.hashSync(req.body.contr, 10);
+        let newUser = {
                         email: form.email,
                         nombre: form.username,
-                        contr: contrHasheada,
+                        contr: form.password,
                         fotoDePerfil:form.fotoPerfil,
                         fechaDeNacimiento:form.fechaNacimiento,
                         dni:form.dni
@@ -141,20 +132,17 @@ let usersController={
                     users.create(newUser) 
 
                     .then(function(created){
-                        //return res.redirect('users/login')
+                        return res.redirect('/users/login')
                         //return res.send(created)
-                        return res.send('Ro')
+                        //return res.send('Ro')
                     })
                     .catch(function(error){
                         console.log('El error es: ' + error)
                     });
-                })   
-             .catch(function(error){
-            console.log(error)
-        })
-    }
+                }   
+}
 
-}//cierra el modulo del controlador
+//cierra el modulo del controlador
 
 
 module.exports = usersController;
