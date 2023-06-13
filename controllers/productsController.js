@@ -43,7 +43,7 @@ let productsController = {
     )
 
     .then(function(resultadoDeBusqueda){
-      return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
+      return res.render ('search-results', {products: resultadoDeBusqueda, owner:owner}) //no renderiza
     })
 
     .catch(function(error){
