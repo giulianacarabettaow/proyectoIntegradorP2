@@ -51,16 +51,16 @@ let productsController = {
       console.log(error)
     })
     },
-    
+
   showProducts: function (req, res) {
     let id = req.params.id;
     let relaciones= {
         include: [
           {association:"owner"},
           {association:"comentarios",
-            include: ["comentador"]}
-      ]}
-
+            include: ["comentador"]
+          }]
+    }
     productos.findByPk(id,relaciones)
 
     .then(function(resultado){
