@@ -29,35 +29,38 @@ let productsController = {
 
     let buscado = req.query.search // Nos trae la query string, especialmente el VALUE del formulario. 
 
-    productos.findAll({
-      where:{
-        [op.or]: [
-        {nombre: {[op.like]: `%${buscado}%` }},
-        {descripcion: {[op.like]: `%${buscado}%`}}
-      ]},
-      include: [
-        {association:"owner"},
-        {association:"comentarios"} //hay que ordenarlos de manera descendiente
-    ],
-      order:[['createdAt', 'DESC']]
-    }
+        productos.findAll({
+        where:{
+            [op.or]: [
+            {nombre: {[op.like]: `%${buscado}%` }},
+            {descripcion: {[op.like]: `%${buscado}%`}}
+        ]},
+        order:[['createdAt', 'DESC']] ,
+        include: [
+            {association:"owner"},
+            {association:"comentarios"}
+        ]}
     )
 
     .then(function(resultadoDeBusqueda){
-      return res.render ('search-results', {products: resultadoDeBusqueda, owner:owner}) //no renderiza
+     //return res.send(resultadoDeBusqueda)
+    return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
     })
 
     .catch(function(error){
       console.log(error)
     })
     },
+    
   showProducts: function (req, res) {
     let id = req.params.id;
     let relaciones= {
         include: [
           {association:"owner"},
-          {association:"comentarios"}]
-    }
+          {association:"comentarios",
+            include: ["comentador"]}
+      ]}
+
     productos.findByPk(id,relaciones)
 
     .then(function(resultado){
