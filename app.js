@@ -33,8 +33,8 @@ app.use(session({
 
 //middleware session
 app.use(function(req, res, next){ //con est función pedimos que todo lo que hagamos con req.session se pase a las vistas
-  if (req.session.usuario != undefined){
-    res.locals.user= req.session.usuario;
+  if (req.session.user != undefined){
+    res.locals.user= req.session.user;
     return next();
   }
   return next(); //para que no se frene el proyecto. <Una vez que se completo siga con el flujo
