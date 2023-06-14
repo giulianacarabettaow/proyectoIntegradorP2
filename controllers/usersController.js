@@ -68,20 +68,12 @@ let usersController={
                      errors.message = 'El usuario no existe'
                      res.locals.errors = errors
                      return res.render('login')
-                }
-
-                // cujando ponen req.session.user= pongo la varuable q va a subir el usuario 
-                
-
-                
+                }    
             })
-
             .catch(function(error){
                 console.log(error)
             })
           }
-        
-        // return res.redirect('/users/profile/:id') //y ese ID de donde lo sacamos? cual es? create, update o demas. Comparar con la base de datos
      },
   
     logout: function(req, res){

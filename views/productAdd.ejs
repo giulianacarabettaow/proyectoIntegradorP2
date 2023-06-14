@@ -3,7 +3,11 @@
 	<%- include('./partials/head') %>
 
 <body>
-	<%- include('./partials/headerLogueado', {users: users}) %>
+	<% if (locals.user!= undefined){ %>
+		<%- include('./partials/headerLogueado') %> 
+		<% }else { %>
+		<%- include('./partials/header') %> 
+		<% } %> 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
@@ -11,7 +15,7 @@
 				<h2 class="products-title">Agregar productos</h2>
 			</div>
 
-			<form method="GET" action="/products">
+			<form method="POST" action="/products/add">
 						
 						
 						<label class="form-label">Nombre</label>
@@ -20,7 +24,8 @@
 						
 						<label class="form-label">Descripción</label>
 						<input type="text" name="descripcion" class="form-input">
-						
+						<input class="hidden" type="hidden" placeholder="Describa el producto que quiere cargar" name="user_id" 
+						value="<%= locals.user.id %> ">
 
 						
 						<label class="form-label">Precio</label>
@@ -34,6 +39,12 @@
 						
 						<button type="submit" class="form-input">Agregar producto</button>
 					</form>
+
+					<% if(locals.errors){ %>
+						<p class="error"> <%= errors.message %></p>
+				
+					<% } %>
+
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> </h2>
 

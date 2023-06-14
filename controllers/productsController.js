@@ -21,8 +21,60 @@ let productsController = {
   },
 
   add: function (req, res) {
-   // return res.render('productAdd', {users: dbProduct.usuario });
+    if (req.session.user != undefined){
+      return res.render('productAdd')
+  } else{
+      return res.redirect('login')
+  }
   },
+
+  addProduct: function(req,res){
+
+    let errors= {};
+    
+     if(req.body.nombre == ''){
+       errors.message='Debes ingresar el nombre del producto'
+       res.locals.errors = errors;
+       return res.render('productAdd')
+     }
+     else if(req.body.imagen == ''){
+       errors.message='Debes agregar una foto del producto'
+       res.locals.errors = errors;
+       return res.render('productAdd')
+     }
+     else if(req.body.descripcion == ''){
+       errors.message= 'Debes agregar una descripción del producto'
+       res.locals.errors = errors;
+       return res.render('productAdd')
+     }
+     else {
+       
+          let info = req.body;
+        
+        let newProd = {
+         nombre: info.nombre,
+         descripcion: info.descripcion,
+         imagen: info.imagen,
+         precio: info.precio,
+         createdAt: new Date(),
+         FkUsuariosId: info.user_id
+       }
+
+       productos.create(newProd)
+
+       .then(function(addedProd){
+         return res.send(addedProd)
+       })
+       .catch(function(error){
+         console.log(error)
+       })
+     }
+
+  },
+
+
+
+
 
   // metodo del buscador
   show: function (req, res) {
@@ -52,14 +104,13 @@ let productsController = {
     })
     },
 
-  showProducts: function (req, res) {
+  showProducts: function (req,res) {
     let id = req.params.id;
     let relaciones= {
-        include: [
-          {association:"owner"},
-          {association:"comentarios",
-            include: ["comentador"]
-          }]
+      include: {
+        all: true,
+        nested: false
+        }
     }
     productos.findByPk(id,relaciones)
 

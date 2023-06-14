@@ -27,13 +27,12 @@
             <p class="product-detail-description">
                <%= productUnique.descripcion %> 
             </p>
-<!-- 
-            <a href="/users/profile/<%#= //productUnique[i].FkUsuariosId %>"> -->
-
-             Subido por <%= owner.nombre %> 
+            
+            <a href="/users/profile/<%=owner.id%>">
+              Subido por <%= owner.nombre %> 
             </a>
           </article>
-		  <!--comentarios y usuarios --> 
+		  <!--comentarios y usuarios--> 
       
           <div class="col-12 col-lg-4">
             <section class="comments">
