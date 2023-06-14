@@ -130,12 +130,12 @@ let usersController={
 
     processRegister: function(req,res){ //no anda todavia bien pero trae la data 
         let form = req.body;
-        //let contrHasheada =bcrypt.hashSync(req.body.contr, 10);
+        let contrHasheada =bcrypt.hashSync(req.body.password, 10);
         let newUser = {
                         email: form.email,
                         nombre: form.username,
-                        //contr: contrHasheada,
-                        contr: form.password,
+                        contr: contrHasheada,
+                        //contr: form.password,
                         fotoDePerfil:form.fotoPerfil,
                         fechaDeNacimiento:form.fechaNacimiento,
                         dni:form.dni

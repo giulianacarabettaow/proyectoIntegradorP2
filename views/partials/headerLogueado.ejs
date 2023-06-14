@@ -37,7 +37,10 @@
 				</ul>
 	
 				<ul class="right-navbar">
-					<p>¡Hola <%= locals.usuarioLogueado.nombre %>!</p>
+					<!-- <p>¡Hola <%#= locals.userLogged.nombre %>!</p> -->
+					<% if (locals.user != undefined) { %>
+						<p>Hola <%= locals.user.nombre%>!</p>
+					<% } %>
 					<li><a href="/users/profile">
 							Mi Perfil <i class="fas fa-user"></i>
 						</a>
