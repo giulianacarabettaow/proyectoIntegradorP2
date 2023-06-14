@@ -64,7 +64,10 @@ let productsController = {
        productos.create(newProd)
 
        .then(function(addedProd){
-         return res.send(addedProd)
+
+        // podemos agrear con un if un prompt para que el usuario confirme el addedProd
+
+         return res.redirect('/products')
        })
        .catch(function(error){
          console.log(error)

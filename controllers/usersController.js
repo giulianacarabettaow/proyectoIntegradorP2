@@ -5,7 +5,6 @@ const users = db.Usuario
 const bcrypt = require('bcryptjs'); //requiero el modulo instalado para hashing
 const { use } = require('../routes');
 
-// este no servia para nada entonces lo use para chequear q no me trae data (a mi, nacho) de la DB de comentarios
 let usersController={
     index: function(req,res){
         comments.findAll()
@@ -28,12 +27,12 @@ let usersController={
           } 
           let errors = {}
         
-          if (info.nombre == ''){
+          if (req.body.username == ''){
             errors.message = 'Debes ingresar tu nombre de usuario'
             res.locals.errors = errors;
             return res.render('login')
           }
-          else if (info.contr == ''){
+          else if (req.body.password == ''){
             errors.message = 'Debes ingresar tu contrseña'
             res.locals.errors = errors;
             return res.render('login')
@@ -49,10 +48,10 @@ let usersController={
                      let encripted = bcrypt.compareSync(info.contr,userLogged.contr) 
                      if (encripted){
 
-                     req.session.user=userLogged;
+                     req.session.user=userLogged
 
                      if (req.body.remember != undefined) {
-                         res.cookie('recordarme', userLogged.dataValues.id, {maxAge : 1000 * 60 *60 } )
+                         res.cookie('recordarme', userLogged.id, {maxAge : 1000 * 60 *60 } )
                      }
                      //return res.send (req.session)
                      return res.redirect("/")
@@ -81,10 +80,11 @@ let usersController={
         res.clearCookie('recordarme');
         return res.redirect('/')
     },
+
     show: function(req,res){
         return res.render('partials/headerLogueado')
     },
-    showProfile: function(req,res){ //anda por url 
+    showProfile: function(req,res){ 
        let idUser = req.params.id
         let relaciones = {
             include: [
@@ -135,8 +135,7 @@ let usersController={
 
                     .then(function(created){
                         return res.redirect('/users/login')
-                        //return res.send(created)
-                        //return res.send('Ro')
+                        
                     })
                     .catch(function(error){
                         console.log('El error es: ' + error)
