@@ -9,7 +9,8 @@ let dbProduct = require("../db/data");
 let productsController = {
   index: function (req, res) {
     productos.findAll({
-      include:[{association:"owner"}]
+      include:[{association:"owner"}],
+      order:[['createdAt', 'DESC']]
     })
     .then(function(resultadoAll){
 
@@ -37,7 +38,8 @@ let productsController = {
       include: [
         {association:"owner"},
         {association:"comentarios"} //hay que ordenarlos de manera descendiente
-    ]
+    ],
+      order:[['createdAt', 'DESC']]
     }
     )
 
@@ -53,17 +55,15 @@ let productsController = {
     let id = req.params.id;
     let relaciones= {
         include: [
-        {
-        all: true,
-        nested: true,
-      }]
+          {association:"owner"},
+          {association:"comentarios"}]
     }
     productos.findByPk(id,relaciones)
 
     .then(function(resultado){
 
       //return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
-      return res.render("products",{productUnique: resultado, comentario: resultado.comentarios, owner:resultado.owner}) //anda
+      return res.render("products",{productUnique: resultado, comentario:resultado.comentarios, owner:resultado.owner}) //anda
     })
   },
 

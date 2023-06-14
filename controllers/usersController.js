@@ -114,7 +114,7 @@ let usersController={
                 comentarios: resultado.comentarios,
             }
             return res.render('profile', {infoUsuario: infoUsuario})
-            //return res.send(resultado)
+           // return res.send(resultado)
         })
         .catch((error)=>{
             return console.log(error)

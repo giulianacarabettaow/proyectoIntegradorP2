@@ -13,7 +13,8 @@ let indexController = {
             include:[
                 {association:"owner"},
                 {association:"comentarios"}
-        ]
+        ],
+        order: [['createdAt', 'DESC']]
         })
         .then(function(data){ //data trae la info que encuentra el findAll
             //return res.send (data)
