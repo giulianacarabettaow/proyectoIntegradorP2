@@ -37,11 +37,11 @@
 				</ul>
 	
 				<ul class="right-navbar">
-					<!-- <p>¡Hola <%#= locals.userLogged.nombre %>!</p> -->
-					<% if (locals.user != undefined) { %>
-						<p>Hola <%= locals.user.nombre%>!</p>
-					<% } %>
-					<li><a href="/users/profile/2">
+					<!-- <p>Bienvenid@ <%#= locals.userLogged.nombre %>!</p> -->
+					<%# if (locals.user != undefined) { %>
+						<!-- <p>Hola <%#= locals.user.nombre%>!</p> -->
+					<%# } %>
+					<li><a href="/users/profile<%#= locals.user.id %>">
 							Mi Perfil <i class="fas fa-user"></i>
 						</a>
 					</li>
@@ -52,13 +52,6 @@
 							</button>
 						</form>
 					</li>
-					<!-- Solo deslogueado <li>
-						<a href="register.html">Creá tu cuenta <i class="far fa-address-card"></i>
-						</a>
-					</li>
-					<li>
-						<a href="login.html">Ingresá <i class="fas fa-sign-in-alt"></i></a>
-					</li> -->
 				</ul>
 			</nav>
 		</div>
