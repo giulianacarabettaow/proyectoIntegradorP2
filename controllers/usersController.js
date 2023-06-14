@@ -88,9 +88,10 @@ let usersController={
        let idUser = req.params.id
         let relaciones = {
             include: [
-                {association: "productos",
-                    include: ["comentarios"]},
-                {association: "comentarios"}
+               
+                 {association: "productos",
+                     include: ["comentarios"]},
+                 {association: "comentarios"}
             ]
         }
         users.findByPk(idUser, relaciones)
@@ -105,7 +106,7 @@ let usersController={
                 comentarios: resultado.comentarios,
             }
             return res.render('profile', {infoUsuario: infoUsuario})
-           //return res.send(resultado)
+            //return res.send(resultado)
         })
         .catch((error)=>{
             return console.log(error)

@@ -9,9 +9,10 @@ let dbProduct = require("../db/data");
 let productsController = {
   index: function (req, res) {
     productos.findAll({
-      include:[{association:"owner"}],
-      order:[['createdAt', 'DESC']]
+      order:[['createdAt', 'DESC']],
+      include:[{association:"owner"}]
     })
+    
     .then(function(resultadoAll){
 
      // return res.send(resultadoAll)
