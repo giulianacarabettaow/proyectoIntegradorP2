@@ -28,9 +28,9 @@
                <%= productUnique.descripcion %> 
             </p>
 <!-- 
-            <a href="/users/profile/<%= //productUnique[i].FkUsuariosId %>"> -->
+            <a href="/users/profile/<%#= //productUnique[i].FkUsuariosId %>"> -->
 
-             by <%= owner.nombre %> 
+             Subido por <%= owner.nombre %> 
             </a>
           </article>
 		  <!--comentarios y usuarios --> 
@@ -39,12 +39,14 @@
             <section class="comments">
               <% for ( let j=0; j < comentario.length ; j++){ %>
               <article>
-                <img src="<%= comentario[j].fotoDePerfil %>" alt="<%=comentario[j].Nombre%>" /> //cambiar nombre de las imagenes creo
+                <img src="/images/users/<%=comentario[j].comentador.fotoDePerfil %>" alt="<%=comentario[j].comentador.nombre%>" /> 
                 <div class="data">
                   <p class="user">
                     <strong>
-                      <a href="/users/profile"><%=comentario[j].Nombre %> </a> <!--preguntar como hacer la ruta a profile--> 
+                      <a href="/users/profile/<%=comentario[j].FkUsuariosId %>"> <%= comentario[j].comentador.nombre%>   </a>
                     </strong>
+                  </p>
+                  <p>
                     <%= comentario[j].textoDelComentario %>
                   </p>
                 </div>

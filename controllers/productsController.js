@@ -56,7 +56,9 @@ let productsController = {
     let relaciones= {
         include: [
           {association:"owner"},
-          {association:"comentarios"}]
+          {association:"comentarios",
+            include: ["comentador"]
+          }]
     }
     productos.findByPk(id,relaciones)
 
