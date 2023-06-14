@@ -30,10 +30,12 @@ let usersController={
         
           if (info.nombre == ''){
             errors.message = 'Debes ingresar tu nombre de usuario'
+            res.locals.errors = errors;
             return res.render('login')
           }
           else if (info.contr == ''){
             errors.message = 'Debes ingresar tu contrseña'
+            res.locals.errors = errors;
             return res.render('login')
           }
           else{
@@ -67,11 +69,11 @@ let usersController={
                 else{
                     errors.message = 'Contraseña incorrecta'
                     res.locals.errors = errors
+                    return res.render('login')
                 }
 
-                // hago un if si userLogged es != null (existe) comparo lo contr. si la contraseña me da bien AHI recien subo el usuario a session
                 // cujando ponen req.session.user= pongo la varuable q va a subir el usuario 
-                //if con compared hash contr y si no esta el nombre mandar a register
+                
                 
             })
 
