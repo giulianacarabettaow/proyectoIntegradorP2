@@ -44,13 +44,26 @@ let usersController={
             .then(function(userLogged){
 
                 if(userLogged != null){
-                    let encripted = bcrypt.compareSync (info.contr,userLogged.contr)
+                    let encripted = bcrypt.compareSync(info.contr,userLogged.contr) // dice que sieempre la contraseña es incorrecta pq no la puede comparar con el compareSync porque el hash que hicimos en registerProcess no anda (tira error)
 
-                    //req.session.user=userLogged.dataValues;
+                    if (encripted){
 
-                    //return res.redirect('/')
-                    return res.send(userLogged)
+                    req.session.user=userLogged.dataValues;
+
+                    if (req.body.remember != undefined) {
+                        res.cookie('id', result.dataValues.id, {maxAge : 1000 * 60 *60 } )
+                    }
+                    return res.redirect("/")
+                  //  return res.send(userLogged)
+                
                 }
+                else {
+                        errors.message = "El usuario existe, pero la contraseña es incorrecta";
+                        res.locals.errors = errors;
+                        return res.render('login');
+                    }
+                }
+                
                 else{
                     errors.message = 'Contraseña incorrecta'
                     res.locals.errors = errors
@@ -115,11 +128,12 @@ let usersController={
 
     processRegister: function(req,res){ //no anda todavia bien pero trae la data 
         let form = req.body;
-        let contrHasheada = bcrypt.hashSync(req.body.contr, 10);
+        //let contrHasheada =bcrypt.hashSync(req.body.contr, 10);
         let newUser = {
                         email: form.email,
                         nombre: form.username,
-                        contr: contrHasheada,
+                        //contr: contrHasheada,
+                        contr: form.password,
                         fotoDePerfil:form.fotoPerfil,
                         fechaDeNacimiento:form.fechaNacimiento,
                         dni:form.dni
