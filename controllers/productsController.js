@@ -110,12 +110,15 @@ let productsController = {
 
   showProducts: function (req,res) {
     let id = req.params.id;
-    let relaciones= {
-      include: {
-        all: true,
-        nested: false
-        }
+    
+    let relaciones = {  include: 
+        
+        [{association:owner},
+        {association:comentarios,
+            include:[{association:comentador}]
+        }]        
     }
+    
     productos.findByPk(id,relaciones)
 
     .then(function(resultado){
