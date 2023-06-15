@@ -37,6 +37,9 @@
                 <h2><%= listaProducts[i].nombre %></h2>
                 <p><%= listaProducts[i].descripcion %></p>
                 <p>Comentarios: <%= listaProducts[i].comentarios.length %></p>
+                <% if (listaProducts[i].owner != undefined){%>
+                  <a href="users/profile/<%= listaProducts[i].FkUsuariosId %>"> Subido por <%=listaProducts[i].owner.nombre%></a> <!--agregar clase y poner en css-->
+                <% } %>
               </article>
             </a>
           </section>
