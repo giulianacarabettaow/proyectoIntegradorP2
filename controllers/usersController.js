@@ -122,25 +122,78 @@ let usersController={
 
     processRegister: function(req,res){ //no anda todavia bien pero trae la data 
         let form = req.body;
-        let contrHasheada =bcrypt.hashSync(req.body.password, 10);
-        let newUser = {
+        let errors = {}
+
+        let filter = {where : [
+            {email: form.email},
+        ]};
+
+        users.findOne(filter)
+
+        .then(function(resultado){
+        if(resultado != null){
+            errors.message = 'Este email ya está en uso'
+            res.locals.errors = errors;
+            return res.render('register')
+        }
+        else{
+            
+            if (form.email == ''){
+                errors.message= 'Debes ingresar un email'
+                res.locals.errors = errors;
+                return res.render('register')
+            }
+
+            else if (form.fechaNacimiento == ''){
+                errors.message = 'Debes ingresar tu fecha de nacimiento'
+                res.locals.errors = errors;
+                return res.render('register')
+            }
+    
+            else if (form.dni == ''){
+                errors.message = 'Debes ingresar tu DNI'
+                res.locals.errors = errors;
+                return res.render('register')
+            }
+
+            else if (form.username == ''){
+                errors.message = 'Debes ingresar un nombre de usuario '
+                res.locals.errors = errors;
+                return res.render('register')
+            }
+
+            else if (form.password == ''){
+                errors.message = 'Debes ingresar una contraseña'
+                res.locals.errors = errors;
+                return res.render('register')
+            }
+    
+            else{
+                let contrHasheada =bcrypt.hashSync(req.body.password, 10);
+                let newUser = {
                         email: form.email,
                         nombre: form.username,
                         contr: contrHasheada,
-                        fotoDePerfil:form.fotoPerfil,
+                        fotoDePerfil:form.fotoPerfil, //aca habría que modificar si hacemos el adic de foto de perifl (haciendo un if abajo)
                         fechaDeNacimiento:form.fechaNacimiento,
-                        dni:form.dni
+                        dni:form.dni,
+                        createdAt: new Date()
                     }
-                    users.create(newUser) 
-
-                    .then(function(created){
-                        return res.redirect('/users/login')
-                        
-                    })
-                    .catch(function(error){
-                        console.log('El error es: ' + error)
-                    });
-                }   
+                        users.create(newUser) 
+        
+                        .then(function(created){
+                            return res.redirect('/users/login')
+                                
+                        })
+                        .catch(function(error){
+                            console.log('El error es: ' + error)
+                        });
+                    
+                }
+            }
+       
+        })
+    }   
 }
 
 //cierra el modulo del controlador
