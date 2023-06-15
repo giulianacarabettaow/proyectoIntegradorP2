@@ -1,3 +1,4 @@
+const { getRounds } = require("bcryptjs");
 const models= require("../database/models") //requeris la conexion a los modelos
 const productos= models.Producto
 const comentario=models.Comentario
@@ -151,7 +152,7 @@ let productsController = {
     .then(function(resultado){
 
       //return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
-      return res.render("products",{productUnique: resultado, comentario:resultado.comentarios, owner:resultado.owner}) //anda
+      return res.render("products",{productUnique: resultado, comentario:resultado.comentarios, owner:resultado.owner}) 
     })
   },
 
@@ -181,7 +182,62 @@ let productsController = {
        console.log(error)
      })
     
-  }
+  },
+
+  editProduct: function(req, res){
+
+    if (req.session.user == undefined){
+      return res.redirect('/')
+    }
+
+    else{
+
+    productos.findByPk(req.params.id) 
+    
+    .then(function(resultado){
+      let productToUpdate = {
+        id: resultado.id,
+        nombre: resultado.nombre,
+        descripcion: resultado.descripcion,
+        imagen: resultado.imagen,
+        precio: resultado.precio
+      }
+      return res.render('editProduct', {previousData: productToUpdate})
+    })
+
+    .catch(function(error){
+      console.log(error)
+    })
+  
+    }},
+
+     editingProduct: (function(req,res){
+      let update = req.body
+    
+        let productEditted = {
+          id: req.params.id,
+          nombre: update.nombre,
+          descripcion: update.descripcion,
+          imagen: update.imagen ,
+          precio: update.precio,
+          updatedAt: new Date() 
+        }
+
+         productos.update( productEditted, {
+           where:{id: req.params.id}
+         })
+
+        .then(function(resultado){
+          //return res.send(resultado)
+          return res.redirect('/products/id/' + req.params.id)
+         
+        })
+
+        .catch(function(error){
+          console.log(error)
+        })
+
+      })
 
 };
 

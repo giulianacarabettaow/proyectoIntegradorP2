@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+	<%- include('./partials/head') %>
+
+<body>
+	<% if (locals.user!= undefined){ %>
+		<%- include('./partials/headerLogueado') %> 
+		<% }else { %>
+		<%- include('./partials/header') %> 
+		<% } %> 
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Editar tu producto <%= previousData.nombre %> </h2>
+			</div>
+
+			<form method="POST" action="/products/id/<%=previousData.id%>">
+						
+						
+						<label class="form-label">Nuevo nombre</label>
+						<input type="text" name="nombre" placeholder="<%= previousData.nombre %>" class="form-input">
+					
+						
+						<label class="form-label">Nueva descripción</label>
+						<input type="text" name="descripcion" class="form-input" placeholder="<%= previousData.descripcion %>">
+						
+
+						
+						<label class="form-label">Nuevo precio</label>
+						<input type="text" name="precio" class="form-input" placeholder="<%= previousData.precio %>">
+						
+
+						
+						<label class="form-label">Nueva imagén</label>
+						<input type="text" name="imagen" class="form-input">
+					
+						
+						<button type="submit" class="form-input">Confirmar cambios del producto</button>
+					</form>
+
+					
+
+			<!-- Show the "ultimos" products -->
+			<h2 class="col-12"> </h2>
+
+
+	<%- include('./partials/footer') %>
+</body>
+
+</html>
