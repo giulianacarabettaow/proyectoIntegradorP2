@@ -127,6 +127,34 @@ let productsController = {
       return res.render("products",{productUnique: resultado, comentario:resultado.comentarios, owner:resultado.owner}) //anda
     })
   },
+  addComment: function(req, res){
+    let info= req.body;
+
+    let newComment = {
+      textoDelComentario: info.newComment,
+      FkUsuariosId: req.session.user.id,
+      FkProductosId: req.params.id,
+      createdAt: new Date(),
+    };
+
+    comentario.create(newComment)
+    .then(function(resultado){
+      //return res.render('/')
+      return res.render('/product/id/'+ newComment.FkProductosId)
+      //return res.send(resultado)
+    })
+    .catch(function(error){
+      console.log (error)
+    })
+
+
+  },
+
+
+
+
+
+
 
   register: function(req,res){
     return res.render('register')
