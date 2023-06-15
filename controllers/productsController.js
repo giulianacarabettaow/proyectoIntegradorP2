@@ -108,6 +108,37 @@ let productsController = {
       console.log(error)
     })
     },
+    
+  addComment: function(req, res){
+      let info= req.body;
+      let errors= {};
+    if (info.newComment == ''){
+      errors.message= 'Debes ingresar un texto'
+      res.locals.errors= errors; //sabemos que no se está renderizando
+      return res.redirect('/products/id/' + req.params.id )
+    }else{
+        let newComment = {
+        textoDelComentario: info.newComment,
+        FkUsuariosId: req.session.user.id,
+        FkProductosId: req.params.id,
+        createdAt: new Date(),
+      };
+  
+      comentario.create(newComment)
+      .then(function(resultado){
+        
+        return res.redirect('/products/id/'+ newComment.FkProductosId)
+        
+      })
+      .catch(function(error){
+        console.log (error)
+      })
+  }   
+      
+  
+  
+  
+    },
 
   showProducts: function (req,res) {
     let id = req.params.id;
@@ -128,36 +159,6 @@ let productsController = {
       //return res.send(resultado) //trae los comentarios pero vacios, hay un problema en la relacion de modelos
       return res.render("products",{productUnique: resultado, comentario:resultado.comentarios, owner:resultado.owner}) //anda
     })
-  },
-  addComment: function(req, res){
-    let info= req.body;
-    let errors= {};
-  if (info.newComment == ''){
-    errors.message= 'Debes ingresar un texto'
-    res.locals.errors= errors;
-    return res.redirect('/products/id/' + req.params.id )
-  }else{
-      let newComment = {
-      textoDelComentario: info.newComment,
-      FkUsuariosId: req.session.user.id,
-      FkProductosId: req.params.id,
-      createdAt: new Date(),
-    };
-
-    comentario.create(newComment)
-    .then(function(resultado){
-      
-      return res.redirect('/products/id/'+ newComment.FkProductosId)
-      
-    })
-    .catch(function(error){
-      console.log (error)
-    })
-}   
-    
-
-
-
   },
 
 
