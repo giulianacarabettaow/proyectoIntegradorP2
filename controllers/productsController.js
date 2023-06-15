@@ -129,7 +129,7 @@ let productsController = {
   },
   addComment: function(req, res){
     let info= req.body;
-
+    
     let newComment = {
       textoDelComentario: info.newComment,
       FkUsuariosId: req.session.user.id,
