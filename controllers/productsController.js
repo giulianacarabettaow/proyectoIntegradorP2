@@ -113,9 +113,9 @@ let productsController = {
     
     let relaciones = {  include: 
         
-        [{association:owner},
-        {association:comentarios,
-            include:[{association:comentador}]
+        [{association: 'owner'},
+        {association: 'comentarios',
+            include:[{association:'comentador'}]
         }]        
     }
     
