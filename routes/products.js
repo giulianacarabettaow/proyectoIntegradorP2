@@ -9,6 +9,7 @@ let productsController = require('../controllers/productsController');
    router.get('/add', productsController.add);
    router.post('/add', productsController.addProduct);
    router.get('/search-results',productsController.show);
+   router.post('/id/:id', productsController.addComment);
    router.get('/users/register',productsController.register); // consultar estas rutas
    router.get('/users/login', productsController.login);
    router.get('/users/profileEdit', productsController.edit); 
