@@ -112,12 +112,13 @@ let productsController = {
   showProducts: function (req,res) {
     let id = req.params.id;
     
-    let relaciones = {  include: 
-        
-        [{association: 'owner'},
-        {association: 'comentarios',
-            include:[{association:'comentador'}]
-        }]        
+    let relaciones = { 
+      order: [['comentarios', 'createdAt', 'DESC']], 
+      
+      include:[{association: 'owner'},
+              {association: 'comentarios',
+                  include:[{association:'comentador'}]
+              }]        
     }
 
     productos.findByPk(id,relaciones)
@@ -130,8 +131,13 @@ let productsController = {
   },
   addComment: function(req, res){
     let info= req.body;
-    
-    let newComment = {
+    let errors= {};
+  if (info.newComment == ''){
+    errors.message= 'Debes ingresar un texto'
+    res.locals.errors= errors;
+    return res.redirect('/products/id/' + req.params.id )
+  }else{
+      let newComment = {
       textoDelComentario: info.newComment,
       FkUsuariosId: req.session.user.id,
       FkProductosId: req.params.id,
@@ -140,13 +146,16 @@ let productsController = {
 
     comentario.create(newComment)
     .then(function(resultado){
-      //return res.render('/products')
+      
       return res.redirect('/products/id/'+ newComment.FkProductosId)
-      //return res.send(resultado)
+      
     })
     .catch(function(error){
       console.log (error)
     })
+}   
+    
+
 
 
   },
