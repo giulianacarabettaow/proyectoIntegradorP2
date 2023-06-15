@@ -10,7 +10,8 @@ let productsController = {
   index: function (req, res) {
     productos.findAll({
       order:[['createdAt', 'DESC']],
-      include:[{association:"owner"}]
+      include:[{association:"owner"},
+      {association: 'comentarios'}]
     })
     
     .then(function(resultadoAll){
@@ -139,8 +140,8 @@ let productsController = {
 
     comentario.create(newComment)
     .then(function(resultado){
-      //return res.render('/')
-      return res.render('/product/id/'+ newComment.FkProductosId)
+      //return res.render('/products')
+      return res.redirect('/products/id/'+ newComment.FkProductosId)
       //return res.send(resultado)
     })
     .catch(function(error){
