@@ -14,13 +14,24 @@
         <h2 class="products-title"><%=productUnique.nombre %></h2>
         <p class="product-detail-description">
           <a href="/users/profileEdit">Editar</a>
+          <!-- agregar un if de q solo se pueda borrar si el usuario lo subió -->
+        <% if (locals.user != undefined) { %>
+          <% if(locals.user.id == productUnique.FkUsuariosId ){ %>
+         
+            <form  class="boton-delete-product" action="/products/id/<%= productUnique.id %>/delete" method="POST">
+              <input type="hidden" name="idABorrar" id="" value="<%= productUnique.id %> ">
+              <button class="product-detail-description" type="submit">Borrar producto</button>
+            </form>
+         
+          <%  } %>
+        <% } %>
         </p>
       </div>
       <div class="product-detail">
         <div class="row">
           <article class="col-12 col-lg-8 product-detail-info">
             <img
-              src= "/images/products/<%=productUnique.imagen %>"
+              src= "<%=productUnique.imagen %>"
               alt="<%= productUnique.nombre%>"
               class="product-detail-img"
             />

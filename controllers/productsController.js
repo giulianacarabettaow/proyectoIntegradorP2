@@ -78,9 +78,6 @@ let productsController = {
   },
 
 
-
-
-
   // metodo del buscador
   show: function (req, res) {
 
@@ -134,10 +131,7 @@ let productsController = {
         console.log (error)
       })
   }   
-      
-  
-  
-  
+    
     },
 
   showProducts: function (req,res) {
@@ -161,12 +155,6 @@ let productsController = {
     })
   },
 
-
-
-
-
-
-
   register: function(req,res ){
     return res.render('register')
   },
@@ -179,6 +167,22 @@ let productsController = {
     //return res.render('profileEdit', {users: dbUsers.usuario})
   },
   
+  deleteProduct: function(req, res){
+    let borrar = req.body.idABorrar
+    
+    productos.destroy({
+       where: {id: borrar }
+     })
+
+    .then(function(resultado){
+       return res.redirect('/')
+     })
+     .catch (function(error){
+       console.log(error)
+     })
+    
+  }
+
 };
 
 module.exports = productsController;

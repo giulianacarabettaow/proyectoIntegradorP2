@@ -50,10 +50,10 @@ let usersController={
 
                      req.session.user=userLogged
 
-                    //  if (req.body.remember != undefined) {
-                    //      res.cookie('recordarme', userLogged.id, {maxAge : 1000 * 60 *60 } )
-                    // }
-                     //return res.send (req.session)
+                     if (req.body.remember != undefined) {
+                          res.cookie('recordarme', userLogged.id, {maxAge : 1000 * 60 *60 } )
+                     }
+                     
                      return res.redirect("/")
                   }
                     else {
@@ -76,9 +76,12 @@ let usersController={
      },
   
     logout: function(req, res){
-        req.session.destroy();
-       // res.clearCookie('recordarme');
+        let aDestruir = req.session
+        
+        aDestruir.destroy();
+        res.clearCookie('recordarme');
         return res.redirect('/')
+        
     },
 
     show: function(req,res){
@@ -89,9 +92,10 @@ let usersController={
         let relaciones = {
             include: [
                
-                 {association: "productos",
-                     include: ["comentarios"]},
-                 {association: "comentarios"}
+                {association: "productos",
+                    include: ["comentarios"],
+                                    },
+                {association: "comentarios"}
             ]
         }
         users.findByPk(idUser, relaciones)
