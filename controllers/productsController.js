@@ -118,7 +118,7 @@ let productsController = {
             include:[{association:comentador}]
         }]        
     }
-    
+
     productos.findByPk(id,relaciones)
 
     .then(function(resultado){
@@ -128,7 +128,7 @@ let productsController = {
     })
   },
 
-  register: function(req,res){
+  register: function(req,res ){
     return res.render('register')
   },
  
