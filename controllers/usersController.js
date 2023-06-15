@@ -50,9 +50,9 @@ let usersController={
 
                      req.session.user=userLogged
 
-                     if (req.body.remember != undefined) {
-                         res.cookie('recordarme', userLogged.id, {maxAge : 1000 * 60 *60 } )
-                     }
+                    //  if (req.body.remember != undefined) {
+                    //      res.cookie('recordarme', userLogged.id, {maxAge : 1000 * 60 *60 } )
+                    // }
                      //return res.send (req.session)
                      return res.redirect("/")
                   }
@@ -77,7 +77,7 @@ let usersController={
   
     logout: function(req, res){
         req.session.destroy();
-        res.clearCookie('recordarme');
+       // res.clearCookie('recordarme');
         return res.redirect('/')
     },
 
