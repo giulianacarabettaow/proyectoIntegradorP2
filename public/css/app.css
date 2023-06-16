@@ -1,8 +1,8 @@
-/*====== Fonts ======*/
+/* /====== Fonts ======/ */
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
 
-/*====== Variables ======*/
+/* /====== Variables ======/ */
 :root {
   --yellow: #EAC926;
   --dark-blue: #03264C;
@@ -14,7 +14,7 @@
 }
 
 
-/*====== Basics ======*/
+/* /====== Basics ======/ */
 * {
   box-sizing: border-box;
 }
@@ -68,7 +68,7 @@ hr {
 }
 
 
-/*====== Main Header ======*/
+/* /====== Main Header ======/ */
 .main-header {
   padding: 15px 0;
   background-color: #D1D4C9;
@@ -115,7 +115,7 @@ hr {
   cursor: pointer;
 }
 
-/*====== Main Navbar ======*/
+/* /====== Main Navbar ======/ */
 .btn-toggle-navbar {
   background-color:#D1D4C9;
   color: #D1D4C9;
@@ -160,7 +160,7 @@ hr {
 
 
 
-/*====== Banner ======*/
+/* /====== Banner ======/ */
 .banner {
   background-image: url(../images/BannerNuevo.png);
   background-repeat: no-repeat;
@@ -170,7 +170,7 @@ hr {
 }
 
 
-/*====== Products ======*/
+/* /====== Products ======/ */
 .ownerProduct{
   padding: 25px;
   display: flex;
@@ -272,7 +272,7 @@ hr {
   box-shadow: 0 0 5px var(--green);
 }
 
-/*====== Footer ======*/
+/* /====== Footer ======/ */
 .main-footer {
   /* background-color: #152A38;
   padding: 20px; */
@@ -318,7 +318,7 @@ hr {
 }
 
 
-/*====== Product Detail ======*/
+/* /====== Product Detail ======/ */
 .product-detail {
   background-color: #ffffff;
   border-radius: 8px;
@@ -445,12 +445,12 @@ hr {
   font-size: 1.7em;
 }
 
-/*====== Resultados de búsqueda =======*/
+/* /====== Resultados de búsqueda =======/ */
 .coincidencias{
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-/*====== Formularios ======*/
+/* /====== Formularios ======/ */
 .form-label {
   display: inline-block;
   font-size: 1.6em;
@@ -504,7 +504,7 @@ textarea.form-input {
 
 
 
-/*====== Profile ======*/
+/* /====== Profile ======/ */
 .info-usuario{
   border-bottom: 1px solid #ccc;
   padding-bottom: 30px;
@@ -535,7 +535,7 @@ textarea.form-input {
 }
 
 
-/*====== Media-Queries ======*/
+/* /====== Media-Queries ======/ */
 @media (min-width: 768px) {
   .main-header_credit-link {
     margin-top: 0;
