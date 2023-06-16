@@ -445,6 +445,11 @@ hr {
   font-size: 1.7em;
 }
 
+/*====== Resultados de búsqueda =======*/
+.coincidencias{
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
 /*====== Formularios ======*/
 .form-label {
   display: inline-block;
@@ -459,6 +464,17 @@ hr {
   font-size: 13px; /* Tamaño de fuente */
   font-family: 'Noto Sans JP', sans-serif;
   width: 500px; /* Ancho del campo de búsqueda */
+  background-color: #f8f8f88c; /* Color de fondo */
+  display: block;
+  justify-content: center;
+}
+.form-input-dos{
+  padding: 5px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 10px; /* Radio del borde */
+  font-size: 13px; /* Tamaño de fuente */
+  font-family: 'Noto Sans JP', sans-serif;
+  width: 100px; /* Ancho del campo de búsqueda */
   background-color: #f8f8f88c; /* Color de fondo */
   display: block;
   justify-content: center;
