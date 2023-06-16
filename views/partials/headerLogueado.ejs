@@ -7,7 +7,7 @@
 			<div class="row align-items-center">
 				<div class="col-5 col-md-2">
 					<a href="/" class="main-header_home-link">
-						<img src="/images/logoChoza.png">
+						<h1>choza home</h1>
 					</a>
 				</div>
 	
@@ -19,10 +19,12 @@
 				</div>
 	
 				<div class="col-12 col-md-4">
+
 					<form action="../search-results-usuarios" method="GET" class="search-form">
 						<input type="text" name="searchUsuarios" placeholder="Buscar usuarios" class="search-form_input">
 						<button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
 					</form>
+					
 				</div>
 			</div>
 	
@@ -39,7 +41,7 @@
 				<ul class="right-navbar">
 
 					<% if (locals.user != undefined) { %>
-						 <strong>Bienvenid@ <%= locals.user.nombre%> !</strong>
+						 <p>Bienvenid@ <%= locals.user.nombre%> !</p>
 					<% } %>
 
 					<li><a href="/users/profile/<%= locals.user.id %>">

@@ -19,7 +19,7 @@
            
               <form action="/products/editar/<%= productUnique.id %>" method="GET">
                 <input type="hidden" name="id"  value="<%=productUnique.id%> ">
-                <button class="product-detail-description" type="submit">Editar producto</button>
+                <button class="form-input-dos" type="submit">Editar</button>
               </form>
            
             <%  } %>
@@ -30,7 +30,7 @@
          
             <form  class="boton-delete-product" action="/products/id/<%= productUnique.id %>/delete" method="POST"> <!-- boton-delete-product agregar esa clase -->
               <input type="hidden" name="idABorrar" id="" value="<%= productUnique.id %> ">
-              <button class="product-detail-description" type="submit">Borrar producto</button>
+              <button class="form-input-dos" type="submit">Borrar</button>
             </form>
          
           <%  } %>
@@ -48,10 +48,11 @@
             <p class="product-detail-description">
                <%= productUnique.descripcion %> 
               </p>
-              
-              <a href="/users/profile/<%=owner.id%>">
-                Subido por <%= owner.nombre %> 
-              </a>
+              <div class="ownerProduct">
+                <a href="/users/profile/<%=owner.id%>" >
+                  Subido por <%= owner.nombre %> 
+                </a>
+              </div>
             </article>
             <!--comentarios y usuarios--> 
             
@@ -76,7 +77,8 @@
             </section>
             <% if (locals.user != undefined){%>
             <form class="form"  method="POST">
-              <input type="text" name="newComment" placeholder="¿Qué opinas?" class="form-input">
+              <input type="text" name="newComment" placeholder="¿Qué opinas?" class="form-input-comentario">
+              <br>
               <button type="submit" class="buy-now-button">
                 AGREGAR COMENTARIO
               </button>

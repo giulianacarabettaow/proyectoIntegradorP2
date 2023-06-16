@@ -25,7 +25,7 @@
 
 						
 						<label class="form-label">Número de documento</label>
-						<input type="number" name="dni" class="form-input">
+						<input type="number" name="dni" placeholder="" class="form-input">
 						
 
 						
@@ -45,7 +45,9 @@
 						<% if (locals.errors){%>
 							<p class="error"><%=locals.errors.message%></p>
 						<%}%>
+						<br>
 						<button type="submit" class="form-input"> Crear perfil</button>
+						<br>
 					</form>
 				</article>
 			</div>

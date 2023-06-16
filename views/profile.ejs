@@ -14,19 +14,19 @@
 			<div class="img-container offset-3 col-2">
 				<img src="/images/users/<%= infoUsuario.fotoDePerfil %>" alt="foto de perfil" class="foto-perfil">
 			</div> 
-			<div class="data-container col-6">
+			<div class="info-usuario">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title"><%= infoUsuario.nombre %>
 					</h1>
 					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 				</div>
 				<div>
-					<ul class="">
+					<ul>
 						<li><%= infoUsuario.email%></li> 
 						<li><%= infoUsuario.fechaDeNacimiento%></li>
-						<li><%= infoUsuario.productos.length%></li>
+						<li>Productos: <%= infoUsuario.productos.length%></li>
 						<li>200 seguidores</li>
-						<li><%= infoUsuario.comentarios.length%></li>
+						<li>Comentarios: <%= infoUsuario.comentarios.length%></li>
 					</ul>
 				</div>
 			</div>
