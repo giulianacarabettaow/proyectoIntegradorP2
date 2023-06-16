@@ -24,10 +24,12 @@
 			<h2 class="col-12"> </h2>
 			<div class="container products-wrapper">
 				<div class="row">
+                        
 					<% if (usuario != "" && usuario){ %>				
 					<div class="col-12 col-sm-6 col-lg-3">
 						<% for (let i=0; i < usuario.length; i++){%>
 						<section class="product-box">
+                           
 							<a href="/users/profile/<%=usuario[i].id %>">
 								<figure class="product-box_image">
 									<img src="/images/users/<%=usuario[i].imagen %>" alt="<%= usuario[i].nombre %>">
@@ -40,6 +42,7 @@
 							</a>
 						</section>
 						<% } %>
+                    
 						<%} else{%>
 							<h2 class="coincidencias" >No se encontraron coincidencias para su búsqueda</h2> <!--agregar esta clase en css-->
 							<%}%>
