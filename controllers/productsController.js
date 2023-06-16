@@ -106,7 +106,7 @@ let productsController = {
 
     .then(function(resultadoDeBusqueda){
      //return res.send(resultadoDeBusqueda)
-    return res.render ('search-results', {products: resultadoDeBusqueda}) //no renderiza
+    return res.render ('search-results', {products: resultadoDeBusqueda}) 
     })
 
     .catch(function(error){
@@ -201,7 +201,7 @@ let productsController = {
 
     productos.findByPk(req.params.id) 
     
-    .then(function(resultado){
+    .then (function(resultado){
       let productToUpdate = {
         id: resultado.id,
         nombre: resultado.nombre,
@@ -218,7 +218,7 @@ let productsController = {
   
     }},
 
-     editingProduct: (function(req,res){
+     editingProduct: function(req,res){
       let update = req.body
     
         let productEditted = {
@@ -244,8 +244,38 @@ let productsController = {
           console.log(error)
         })
 
-      })
+      },
+
+      searchUsuarios: function(req,res){
+        let usuarioBuscado = req.query.searchUsuarios
+        
+        user.findAll({
+        where:{
+            [op.or]: [
+            {nombre: {[op.like]: `%${usuarioBuscado}%` }},
+            {email: {[op.like]: `%${usuarioBuscado}%`}}
+        ]},
+        order:[['createdAt', 'DESC']] ,
+        include: [
+            {association:"productos"},
+            {association:"comentarios"}
+        ]}
+      )
+
+        .then (function(resultadoDeBusqueda){
+          //return res.send(resultadoDeBusqueda)
+          return res.render('search-results-usuarios', {usuario:resultadoDeBusqueda})
+        })
+
+        .catch(function(error){
+          console.log('El error es: ' + error)
+        });
+
+    }
+      
+
 
 };
+
 
 module.exports = productsController;

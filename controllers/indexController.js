@@ -1,6 +1,7 @@
 const models= require("../database/models") //requeris la conexion a los modelos
 const productos= models.Producto
 const comentario=models.Comentario
+const users = models.Usuario
 const op = models.Sequelize.Op;
 
 
@@ -49,7 +50,36 @@ let indexController = {
 
     .catch(function(error){
       console.log(error)
-    })}
+    })},
+
+    searchUsuarios: function(req,res){
+        let usuarioBuscado = req.query.searchUsuarios
+        
+        users.findAll({
+        where:{
+            [op.or]: [
+            {nombre: {[op.like]: `%${usuarioBuscado}%` }},
+            {email: {[op.like]: `%${usuarioBuscado}%`}}
+        ]},
+        order:[['createdAt', 'DESC']] ,
+        include: [
+            {association:"productos"},
+            {association:"comentarios"}
+        ]
+    }
+    )
+
+    .then (function(resultadoDeBusqueda){
+        //return res.send(resultadoDeBusqueda)
+        return res.render('search-results-usuarios', {usuario:resultadoDeBusqueda})
+    })
+
+    .catch(function(error){
+        console.log('El error es: ' + error)
+    });
+
+    }
+    
 }
 
 module.exports= indexController;

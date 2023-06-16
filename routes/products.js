@@ -30,6 +30,8 @@ let productsController = require('../controllers/productsController');
    router.post('/id/:id/delete', productsController.deleteProduct)
    router.get('/editar/:id', productsController.editProduct)
    router.post('/editar/:id', productsController.editingProduct)
+   router.get('/search-results-usuarios', productsController.searchUsuarios)
+
 
 
 

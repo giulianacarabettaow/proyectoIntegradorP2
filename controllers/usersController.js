@@ -1,6 +1,7 @@
 const db = require('../database/models')
 const comments = db.Comentario
 const users = db.Usuario
+const op = db.Sequelize.Op;
 
 const bcrypt = require('bcryptjs'); //requiero el modulo instalado para hashing
 const { use } = require('../routes');
@@ -202,7 +203,34 @@ let usersController={
             }
        
         })
-    }   
+    },
+
+    searchUsuarios: function(req,res){
+        let usuarioBuscado = req.query.searchUsuarios
+        
+        users.findAll({
+        where:{
+            [op.or]: [
+            {nombre: {[op.like]: `%${usuarioBuscado}%` }},
+            {email: {[op.like]: `%${usuarioBuscado}%`}}
+        ]},
+        order:[['createdAt', 'DESC']] ,
+        include: [
+            {association:"productos"},
+            {association:"comentarios"}
+        ]}
+    )
+
+    .then (function(resultadoDeBusqueda){
+        //return res.send(resultadoDeBusqueda)
+       return res.render('search-results-usuarios', {usuario:resultadoDeBusqueda})
+    })
+
+    .catch(function(error){
+        console.log('El error es: ' + error)
+    });
+
+    }
 }
 
 //cierra el modulo del controlador

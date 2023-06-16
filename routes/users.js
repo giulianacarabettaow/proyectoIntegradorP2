@@ -11,5 +11,6 @@ router.get('/headerLogueado', usersController.show);
 router.get('/profile/:id', usersController.showProfile);
 router.get('/profileEdit', usersController.edit);
 router.post('/profileEdit', usersController.edit); //el usuario puede editar sus datos
+router.get('/search-results-usuarios', usersController.searchUsuarios)
 
 module.exports = router;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('./partials/head') %>
+<body>
+	<% if (locals.user!= undefined){ %>
+		<%- include('./partials/headerLogueado') %> 
+		<% }else { %>
+		<%- include('./partials/header') %> 
+		<% } %>
+
+	<div class="container products-wrapper">
+		<div class="row">
+			<% if (locals.user != undefined) { %>
+                <div class="col-12">
+                    <h2 class="products-title"><%=locals.user.nombre%>, aquí están los resultados de búsqueda de usuarios</h2>
+                </div>
+                <% } else {%>
+    
+                <div class="col-12">
+                    <h2 class="products-title"> Aquí están los resultados de búsqueda de usuarios</h2>
+                </div>
+                
+                <% } %>
+			<h2 class="col-12"> </h2>
+			<div class="container products-wrapper">
+				<div class="row">
+					<% if (usuario != "" && usuario){ %>				
+					<div class="col-12 col-sm-6 col-lg-3">
+						<% for (let i=0; i < usuario.length; i++){%>
+						<section class="product-box">
+							<a href="/users/profile/<%=usuario[i].id %>">
+								<figure class="product-box_image">
+									<img src="/images/users/<%=usuario[i].imagen %>" alt="<%= usuario[i].nombre %>">
+								</figure>
+								<article class="product-box_data">
+									<h2><%= usuario[i].nombre %></h2>
+									<p><%= usuario[i].email %></p>
+                                    <p><%= usuario[i].nombre %> está en CHOZA desde <%= usuario[i].createdAt %></p>
+								</article>
+							</a>
+						</section>
+						<% } %>
+						<%} else{%>
+							<h2 class="coincidencias" >No se encontraron coincidencias para su búsqueda</h2> <!--agregar esta clase en css-->
+							<%}%>
+					</div>
+					
+				</div>
+			</div>
+
+	<%- include('./partials/footer') %>
+</body>
+
+</html>
