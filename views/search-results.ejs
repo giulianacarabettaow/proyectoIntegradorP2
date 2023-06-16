@@ -29,7 +29,7 @@
 									<p><%= products[i].descripcion %></p>
 									<p>Comentarios: <%= products[i].comentarios.length %></p>
 									<% if (products[i].owner != undefined){%>
-										<a href="users/profile/<%= products[i].FkUsuariosId %>"> Subido por <%=products[i].owner.nombre%></a> <!--agregar clase y poner en css-->
+										<a href="/users/profile/<%= products[i].FkUsuariosId %>"> Subido por <%=products[i].owner.nombre%></a> <!--agregar clase y poner en css-->
 									<% } %>
 								</article>
 							</a>

@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser'); //con la version nueva la podemos b
 var logger = require('morgan');
 const session = require('express-session');
 
+
 //Requerir DB
 const db = require('./database/models');
 

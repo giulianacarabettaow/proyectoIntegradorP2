@@ -13,7 +13,28 @@
       <div class="d-flex align-items-center">
         <h2 class="products-title"><%=productUnique.nombre %></h2>
         <p class="product-detail-description">
-          <a href="/users/profileEdit">Editar</a>
+
+          <% if (locals.user != undefined) { %>
+            <% if(locals.user.id == productUnique.FkUsuariosId ){ %>
+           
+              <form action="/products/editar/<%= productUnique.id %>" method="GET">
+                <input type="hidden" name="id"  value="<%=productUnique.id%> ">
+                <button class="product-detail-description" type="submit">Editar producto</button>
+              </form>
+           
+            <%  } %>
+          <% } %>
+        
+        <% if (locals.user != undefined) { %>
+          <% if(locals.user.id == productUnique.FkUsuariosId ){ %>
+         
+            <form  class="boton-delete-product" action="/products/id/<%= productUnique.id %>/delete" method="POST"> <!-- boton-delete-product agregar esa clase -->
+              <input type="hidden" name="idABorrar" id="" value="<%= productUnique.id %> ">
+              <button class="product-detail-description" type="submit">Borrar producto</button>
+            </form>
+         
+          <%  } %>
+        <% } %>
         </p>
       </div>
       <div class="product-detail">
@@ -37,9 +58,7 @@
             
             <div class="col-12 col-lg-4">
               <section class="comments">
-              <% if(locals.errors){ %>
-                <p class="error"> <%= errors.message %></p>
-                <% } %>
+              
               <% for ( let j=0; j < comentario.length ; j++){ %>
               <article>
                 <img src="/images/users/<%=comentario[j].comentador.fotoDePerfil %>" alt="<%=comentario[j].comentador.nombre%>" /> 
@@ -67,6 +86,11 @@
             <%} else{%>
               <a href="/users/login"><button class="buy-now-button">Debes iniciar sesión para comentar</button></a>
               <%}%>
+
+              <% if(locals.errors){ %>
+                <p class="error"> <%= errors.message %></p>
+                <% } %>
+                
                 <hr />
               </div>
         </div>

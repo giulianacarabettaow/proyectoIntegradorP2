@@ -31,6 +31,7 @@ module.exports = function(sequelize, dataTypes){
             type: dataTypes.INTEGER,
             notNull: true
         },
+        
         createdAt:{
             type: dataTypes.DATE
         },

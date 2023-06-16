@@ -50,10 +50,10 @@ let usersController={
 
                      req.session.user=userLogged
 
-                    //  if (req.body.remember != undefined) {
-                    //      res.cookie('recordarme', userLogged.id, {maxAge : 1000 * 60 *60 } )
-                    // }
-                     //return res.send (req.session)
+                     if (req.body.remember != undefined) {
+                          res.cookie('recordarme', userLogged.id, {maxAge : 1000 * 60 *60 } )
+                     }
+                     
                      return res.redirect("/")
                   }
                     else {
@@ -76,9 +76,12 @@ let usersController={
      },
   
     logout: function(req, res){
-        req.session.destroy();
-       // res.clearCookie('recordarme');
+        let aDestruir = req.session
+        
+        aDestruir.destroy();
+        res.clearCookie('recordarme');
         return res.redirect('/')
+        
     },
 
     show: function(req,res){
@@ -89,9 +92,10 @@ let usersController={
         let relaciones = {
             include: [
                
-                 {association: "productos",
-                     include: ["comentarios"]},
-                 {association: "comentarios"}
+                {association: "productos",
+                    include: ["comentarios"],
+                                    },
+                {association: "comentarios"}
             ]
         }
         users.findByPk(idUser, relaciones)
@@ -167,6 +171,12 @@ let usersController={
                 res.locals.errors = errors;
                 return res.render('register')
             }
+
+            else if(form.password.length < 3){
+                errors.message = 'La contreseña debe ser de más de 3 dígitos o letras'
+                res.locals.erros = errors;
+                return res.render('register')
+            }
     
             else{
                 let contrHasheada =bcrypt.hashSync(req.body.password, 10);
@@ -187,8 +197,7 @@ let usersController={
                         })
                         .catch(function(error){
                             console.log('El error es: ' + error)
-                        });
-                    
+                        });   
                 }
             }
        

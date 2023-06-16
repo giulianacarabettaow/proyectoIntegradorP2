@@ -12,7 +12,7 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Agregar productos</h2>
+				<h2 class="products-title"> <strong><%= locals.user.nombre%></strong> , completa el formulario y agrega nuevos productos...</h2>
 			</div>
 
 			<form method="POST" action="/products/add">
@@ -23,9 +23,8 @@
 					
 						
 						<label class="form-label">Descripción</label>
-						<input type="text" name="descripcion" class="form-input">
-						<input class="hidden" type="hidden" placeholder="Describa el producto que quiere cargar" name="user_id" 
-						value="<%= locals.user.id %> ">
+						<input type="text" name="descripcion" class="form-input" placeholder="Describa el producto que quiere cargar">
+						<input class="hidden" type="hidden"  name="user_id" value="<%= locals.user.id %>">
 
 						
 						<label class="form-label">Precio</label>
