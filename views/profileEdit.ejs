@@ -14,16 +14,19 @@
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<article>
-				<form method="POST" action="/users/profile">
+				<form method="post" action="/users/profileEdit/<%= previousData.id %>">
 					
-					<label class="form-label">Email</label>
-					<input type="email" name="email" placeholder="<%= locals.user.email %>" class="form-input" >
+					 <label class="form-label">Email</label>
+					<input type="email" name="email" placeholder="<%= previousData.email %>" class="form-input" > 
 					
 					<label class="form-label">Fecha de Nacimiento</label>
-					<input type="date" name="fechaNacimiento" placeholder="<%= locals.user.fechaNacimiento %>" class="form-input">
+					<input type="date" name="fechaNacimiento" placeholder="<%= previousData.fechaDeNacimiento %>" class="form-input">
 
-					<label class="form-label"> Nombre de usuario:</label>
-					<input type="text" name="username" placeholder="<%= locals.user.nombre %>" class="form-input">
+					<label class="form-label">DNI:</label>
+					<input type="text" name="dni"  placeholder="<%= previousData.dni %>" class="form-input">
+
+					 <label class="form-label"> Nombre de usuario:</label>
+					<input type="text" name="username" placeholder="<%= previousData.nombre %>" class="form-input"> 
 
 					<!-- <label class="form-label">Contraseña:</label>
 					<input type="password" name="password"  placeholder="" class="form-input"> -->
@@ -36,7 +39,7 @@
 				</form>
 			</article>
 
-	<%- include('./partials/footer') %>
+			<%- include('./partials/footer') %>
 </body>
 
 </html>

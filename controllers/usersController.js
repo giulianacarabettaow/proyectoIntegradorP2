@@ -119,26 +119,50 @@ let usersController={
         
     },
     edit: function(req,res){
-        return res.render('profileEdit') //{users: dbUsers.usuario})
+        if (req.session.user == undefined){
+             return res.redirect('/')
+
+        }else{
+      
+    users.findByPk(req.params.id) 
+          
+           .then (function(resultado){
+             let userToUpdate = {
+               id: resultado.id,
+               email: resultado.email,
+               nombre: resultado.nombre,
+               fotoDePerfil: resultado.imagen,
+               dni: resultado.dni
+             }
+             return res.render('profileEdit', {previousData: userToUpdate})
+           })
+      
+           .catch(function(error){
+             console.log(error)
+           })
+        
+        }
     },
 
     processEdit: function(req,res){
         let update = req.body
-    
+        let idUser= req.session.users.id
         let userEditted = {
-          id: req.params.id,
+          id: id,
           nombre: update.nombre,
           imagen: update.imagen ,
           updatedAt: new Date() 
         }
 
          users.update( userEditted, {
-           where:{id: req.params.id}
+           where:{id: idUser}
          })
 
         .then(function(resultado){
           //return res.send(resultado)
-          return res.redirect('/profile/' + req.params.id)
+          req.session.user = resultado;
+          return res.redirect('/users/profile/' + idUser)
+          //return res.redirect('/')
          
         })
 
