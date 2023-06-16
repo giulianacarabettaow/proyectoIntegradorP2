@@ -110,7 +110,7 @@ let usersController={
                 productos: resultado.productos,
                 comentarios: resultado.comentarios,
             }
-            return res.render('profile', {infoUsuario: infoUsuario})
+            return res.render('profile', {infoUsuario: infoUsuario, infoProd: infoUsuario.productos })
             //return res.send(resultado)
         })
         .catch((error)=>{
