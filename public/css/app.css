@@ -391,7 +391,7 @@ hr {
 
 .buy-now-button {
   background-color: #556E53;
-  font-size: 1.6em;
+  font-size: auto;
   color: #ffffff;
   padding: 15px;
   border-radius: 8px;

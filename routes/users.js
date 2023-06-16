@@ -9,7 +9,8 @@ router.post('/register', usersController. processRegister); //esta ruta procesa 
 router.post('/logout', usersController.logout);
 router.get('/headerLogueado', usersController.show);
 router.get('/profile/:id', usersController.showProfile);
-router.get('/profileEdit', usersController.edit);
+router.get('/profileEdit/:id', usersController.edit);
+router.post('/profileEdit/:id', usersController.processEdit)
 router.post('/profileEdit', usersController.edit); //el usuario puede editar sus datos
 router.get('/search-results-usuarios', usersController.searchUsuarios)
 

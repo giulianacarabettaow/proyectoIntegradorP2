@@ -3,41 +3,44 @@
 	<%- include('./partials/head') %>
 
 <body>
-	<%- include('./partials/headerLogueado') %> 
-	<!-- Novedades -->
+	<% if (locals.user!= undefined){ %>
+		<%- include('./partials/headerLogueado') %> 
+		<% }else { %>
+		<%- include('./partials/header') %> 
+		<% } %> 
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<article>
-				<form method="GET" action="/users/profile">
+				<form method="post" action="/users/profileEdit/<%= previousData.id %>">
 					
-					<label class="form-label">Email</label>
-					<input type="email" name="email" value="<%= users.email %>" class="form-input" >
+					 <label class="form-label">Email</label>
+					<input type="email" name="email" placeholder="<%= previousData.email %>" class="form-input" > 
 					
 					<label class="form-label">Fecha de Nacimiento</label>
-					<input type="date" name="fechaNacimiento" value="<%= users.fechaNacimiento %>" class="form-input">
+					<input type="date" name="fechaNacimiento" placeholder="<%= previousData.fechaDeNacimiento %>" class="form-input">
 
-					<label class="form-label">Número de documento</label>
-					<input type="number" name="dni" value="<%= users.dni %>" class="form-input" >
-					
+					<label class="form-label">DNI:</label>
+					<input type="text" name="dni"  placeholder="<%= previousData.dni %>" class="form-input">
 
-					<label class="form-label"> Nombre de usuario:</label>
-					<input type="text" name="username" value="<%= users.username %>" class="form-input">
+					 <label class="form-label"> Nombre de usuario:</label>
+					<input type="text" name="username" placeholder="<%= previousData.nombre %>" class="form-input"> 
 
-					<label class="form-label">Contraseña:</label>
-					<input type="password" name="password"  value="<%= users.password %>" class="form-input">
+					<!-- <label class="form-label">Contraseña:</label>
+					<input type="password" name="password"  placeholder="" class="form-input"> -->
 					
 					
 					<label class="form-label">Foto de perfil:</label>
-					<input type="image" name="fotoPerfil" class="form-input">
-					
-					<button type="submit"> Ingresar</button>
+					<input type="text" name="fotoPerfil" class="form-input">
+					<br>
+					<button type="submit" class="form-input"> Ingresar</button>
+					<br>
 				</form>
 			</article>
 
-	<%- include('./partials/footer') %>
+			<%- include('./partials/footer') %>
 </body>
 
 </html>

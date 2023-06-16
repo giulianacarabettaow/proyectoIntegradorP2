@@ -110,7 +110,7 @@ let usersController={
                 productos: resultado.productos,
                 comentarios: resultado.comentarios,
             }
-            return res.render('profile', {infoUsuario: infoUsuario})
+            return res.render('profile', {infoUsuario: infoUsuario, infoProd: infoUsuario.productos })
             //return res.send(resultado)
         })
         .catch((error)=>{
@@ -119,8 +119,59 @@ let usersController={
         
     },
     edit: function(req,res){
-        //return res.render('profileEdit', {users: dbUsers.usuario})
+        if (req.session.user == undefined){
+             return res.redirect('/')
+
+        }else{
+      
+    users.findByPk(req.params.id) 
+          
+           .then (function(resultado){
+             let userToUpdate = {
+               id: resultado.id,
+               email: resultado.email,
+               nombre: resultado.nombre,
+               fotoDePerfil: resultado.imagen,
+               dni: resultado.dni
+             }
+             return res.render('profileEdit', {previousData: userToUpdate})
+           })
+      
+           .catch(function(error){
+             console.log(error)
+           })
+        
+        }
     },
+
+    processEdit: function(req,res){
+        let update = req.body
+        let idUser= req.session.users.id
+        let userEditted = {
+          id: id,
+          nombre: update.nombre,
+          imagen: update.imagen ,
+          updatedAt: new Date() 
+        }
+
+         users.update( userEditted, {
+           where:{id: idUser}
+         })
+
+        .then(function(resultado){
+          //return res.send(resultado)
+          req.session.user = resultado;
+          return res.redirect('/users/profile/' + idUser)
+          //return res.redirect('/')
+         
+        })
+
+        .catch(function(error){
+          console.log(error)
+        })
+
+    },
+
     register: function(req,res){
         return res.render('register')
     },
