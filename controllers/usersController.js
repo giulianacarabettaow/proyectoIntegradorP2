@@ -171,6 +171,12 @@ let usersController={
                 res.locals.errors = errors;
                 return res.render('register')
             }
+
+            else if(form.password.length < 3){
+                errors.message = 'La contreseña debe ser de más de 3 dígitos o letras'
+                res.locals.erros = errors;
+                return res.render('register')
+            }
     
             else{
                 let contrHasheada =bcrypt.hashSync(req.body.password, 10);
@@ -191,8 +197,7 @@ let usersController={
                         })
                         .catch(function(error){
                             console.log('El error es: ' + error)
-                        });
-                    
+                        });   
                 }
             }
        
