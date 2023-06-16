@@ -3,35 +3,34 @@
 	<%- include('./partials/head') %>
 
 <body>
-	<%- include('./partials/headerLogueado') %> 
-	<!-- Novedades -->
+	<% if (locals.user!= undefined){ %>
+		<%- include('./partials/headerLogueado') %> 
+		<% }else { %>
+		<%- include('./partials/header') %> 
+		<% } %> 
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<article>
-				<form method="GET" action="/users/profile">
+				<form method="POST" action="/users/profile">
 					
 					<label class="form-label">Email</label>
-					<input type="email" name="email" value="<%= users.email %>" class="form-input" >
+					<input type="email" name="email" placeholder="<%= locals.user.email %>" class="form-input" >
 					
 					<label class="form-label">Fecha de Nacimiento</label>
-					<input type="date" name="fechaNacimiento" value="<%= users.fechaNacimiento %>" class="form-input">
-
-					<label class="form-label">Número de documento</label>
-					<input type="number" name="dni" value="<%= users.dni %>" class="form-input" >
-					
+					<input type="date" name="fechaNacimiento" placeholder="<%= locals.user.fechaNacimiento %>" class="form-input">
 
 					<label class="form-label"> Nombre de usuario:</label>
-					<input type="text" name="username" value="<%= users.username %>" class="form-input">
+					<input type="text" name="username" placeholder="<%= locals.user.nombre %>" class="form-input">
 
-					<label class="form-label">Contraseña:</label>
-					<input type="password" name="password"  value="<%= users.password %>" class="form-input">
+					<!-- <label class="form-label">Contraseña:</label>
+					<input type="password" name="password"  placeholder="" class="form-input"> -->
 					
 					
 					<label class="form-label">Foto de perfil:</label>
-					<input type="image" name="fotoPerfil" class="form-input">
+					<input type="text" name="fotoPerfil" class="form-input">
 					
 					<button type="submit"> Ingresar</button>
 				</form>

@@ -119,8 +119,35 @@ let usersController={
         
     },
     edit: function(req,res){
-        //return res.render('profileEdit', {users: dbUsers.usuario})
+        return res.render('profileEdit') //{users: dbUsers.usuario})
     },
+
+    processEdit: function(req,res){
+        let update = req.body
+    
+        let userEditted = {
+          id: req.params.id,
+          nombre: update.nombre,
+          imagen: update.imagen ,
+          updatedAt: new Date() 
+        }
+
+         users.update( userEditted, {
+           where:{id: req.params.id}
+         })
+
+        .then(function(resultado){
+          //return res.send(resultado)
+          return res.redirect('/profile/' + req.params.id)
+         
+        })
+
+        .catch(function(error){
+          console.log(error)
+        })
+
+    },
+
     register: function(req,res){
         return res.render('register')
     },
