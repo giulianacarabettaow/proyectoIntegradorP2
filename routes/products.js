@@ -14,8 +14,8 @@ let productsController = require('../controllers/productsController');
    router.get('/users/login', productsController.login);
    router.get('/users/profileEdit', productsController.edit);
    router.post('/id/:id/delete', productsController.deleteProduct)
-   router.get('/id/:id/editar', productsController.editProduct)
-   router.post('/id/:id/editar', productsController.editingProduct)
+   router.get('/editar/:id', productsController.editProduct)
+   router.post('/editar/:id', productsController.editingProduct)
 
 
 
