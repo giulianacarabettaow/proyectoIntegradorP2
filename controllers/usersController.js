@@ -185,7 +185,8 @@ let usersController={
                         email: form.email,
                         nombre: form.username,
                         contr: contrHasheada,
-                        fotoDePerfil:form.fotoPerfil, //aca habría que modificar si hacemos el adic de foto de perifl (haciendo un if abajo)
+                        //fotoDePerfil:form.fotoPerfil, //aca habría que modificar si hacemos el adic de foto de perifl (haciendo un if abajo)
+                        fotoDePerfil:'/default-image.png',
                         fechaDeNacimiento:form.fechaNacimiento,
                         dni:form.dni,
                         createdAt: new Date()
