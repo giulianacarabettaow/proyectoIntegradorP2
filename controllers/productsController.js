@@ -57,20 +57,27 @@ let productsController = {
         let newProd = {
          nombre: info.nombre,
          descripcion: info.descripcion,
-         imagen: info.imagen,
+         imagen: '',
          precio: info.precio,
          createdAt: new Date(),
          FkUsuariosId: info.user_id
        }
 
+      //  if(req.file != undefined) {
+      //   newProd.image = req.file.filename; // si req file esta vacio, la lleno. 
+      //   } else {
+
+      //   errors.message = "La foto esta vacia";
+      //   res.locals.errors = errors;
+      //   return res.render('productAdd')
+      //   }
+
        productos.create(newProd)
 
        .then(function(addedProd){
-
-        // podemos agrear con un if un prompt para que el usuario confirme el addedProd
-
          return res.redirect('/products')
        })
+
        .catch(function(error){
          console.log(error)
        })

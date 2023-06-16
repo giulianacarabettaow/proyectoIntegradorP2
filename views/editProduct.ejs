@@ -12,7 +12,7 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Editar tu producto <%= previousData.nombre %> </h2>
+				<h2 class="products-title"><%= locals.user.nombre %>, completa el formulario y edita tu producto...  </h2>
 			</div>
 
 			<form method="POST" action="/products/editar/<%=previousData.id%>">
