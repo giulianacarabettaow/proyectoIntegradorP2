@@ -57,9 +57,7 @@
             
             <div class="col-12 col-lg-4">
               <section class="comments">
-              <% if(locals.errors){ %>
-                <p class="error"> <%= errors.message %></p>
-                <% } %>
+              
               <% for ( let j=0; j < comentario.length ; j++){ %>
               <article>
                 <img src="/images/users/<%=comentario[j].comentador.fotoDePerfil %>" alt="<%=comentario[j].comentador.nombre%>" /> 
@@ -86,6 +84,11 @@
             <%} else{%>
               <a href="/users/login"><button class="buy-now-button">Debes iniciar sesión para comentar</button></a>
               <%}%>
+
+              <% if(locals.errors){ %>
+                <p class="error"> <%= errors.message %></p>
+                <% } %>
+                
                 <hr />
               </div>
         </div>
